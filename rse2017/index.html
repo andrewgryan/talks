@@ -1,0 +1,323 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>RSE2017 - Andy Ryan</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
+		<link rel="stylesheet" href="css/reveal-reset.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+        <!-- Custom CSS -->
+        <style type="text/css" media="all">
+            .reveal .slides img.institute {
+                width: 100px;
+                border-style: none;
+                box-shadow: none;
+                margin: 10px;
+            }
+            .reveal .slides img.paper {
+                width: 400px;
+                border: 0px solid black;
+            }
+
+            .reveal .slides img.rose {
+                width: 500px;
+                border-style: none;
+                box-shadow: none;
+            }
+
+            .reveal .slides img.met-office-web {
+                width: 600px;
+                border-style: none;
+                box-shadow: none;
+            }
+        </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                    <h3>Ideas</h3>
+                    <ul>
+                        <li>JSON configuration solving too many flags</li>
+                        <li>Rose suite leveraging small application design</li>
+                        <li>TDD maintaining backwards compatibility</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Ocean forecast verification</h2>
+                    <h4>Building a software system</h4>
+                    <p>Andy Ryan</p>
+                </section>
+                <section>
+                    <h3>About me</h3>
+                    <ul>
+                        <li>Met Office</li>
+                        <li><a href="http://www.metoffice.gov.uk/research/weather/ocean-forecasting/ocean-verification">Ocean Forecast Verification team</a></li>
+                        <li>Scientific Software Engineer</li>
+                    </ul>
+                </section>
+                <section>
+                    <section>
+                        <h3>GODAE OceanView</h3>
+                        <p>Global Ocean inter-comparison project</p>
+                        <img src="noaa-logo.svg" class="institute" alt="" />
+                        <img src="mercator-ocean-logo.jpg" class="institute" alt="" />
+                        <img src="environment-canada-logo.png" class="institute" alt="" />
+                        <img src="met-office.svg" class="institute" alt="" />
+                        <img src="bom-logo.png" class="institute" alt="" />
+                        <img src="csiro-logo.png" class="institute" alt="" />
+                        <p>Ocean Verification Framework called "Class 4"</p>
+                    </section>
+                    <section>
+                        <h3>European Commission</h3>
+                        <a href="http://marine.copernicus.eu/services-portfolio/scientific-quality/#mfcs|global|global-analysis-forecast-phys-001-015|sst-driftingbuoy">
+                        <img class="rose" src="cmems-screenshot.png" alt="" />
+                        </a>
+                    </section>
+                    <section>
+                        <h3>Met Office monitoring</h3>
+                        <img class="met-office-web" src="web-screenshot.png" alt="" />
+                    </section>
+                    <section>
+                        <h3>Publications</h3>
+                        <h4>Journal of Operational Oceanography</h4>
+
+                        <div style="display:inline-block">
+
+                        <!-- My paper -->
+                        <a href="http://imarest.tandfonline.com/doi/full/10.1080/1755876X.2015.1022330">
+                            <img style="display:block" src="ryan-abstract-crop.png" class="paper" alt="" />
+                        </a>
+
+                        <!-- Prasanth's paper -->
+                        <a href="http://www.tandfonline.com/doi/full/10.1080/1755876X.2015.1022333">
+                            <img style="display:block" src="divakaran-abstract-crop.png" class="paper" alt="" />
+                        </a>
+                        </div>
+
+                        <!-- Fabrice's paper -->
+                        <a href="http://www.tandfonline.com/doi/full/10.1080/1755876X.2015.1050282">
+                            <img src="hernandez-abstract-crop.png" class="paper" alt="" />
+                        </a>
+                    </section>
+                </section>
+                <section>
+                    <h2>Building the system</h2>
+                </section>
+                <section>
+                    <section>
+                        <h2>Step 1</h2>
+                        <p>Blank canvas</p>
+                    </section>
+                    <section>
+                        <h2>Version 0.0.0</h2>
+                        <ul>
+                            <li>When I began scientists were familiar with shell scripts and Fortran</li>
+                            <li>Python was new and not widely adopted</li>
+                            <li>So I wrote the system in Python</li>
+                            <li>With a command line feel</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Early adopters</h3>
+                        <ol>
+                            <li>cron daemon</li>
+                            <li>me</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h3>Early design</h3>
+                        <ul>
+                            <li>Linux philosophy</li>
+                            <li>Command line applications</li>
+                            <pre><code class="bash" data-trim data-noescape>
+:> c4obs --help
+:> c4extract --help
+:> c4stats --help
+:> c4plot --help
+...
+                            </code></pre>
+                            <li>Everything prefixed with <strong>c4</strong></li>
+                            <li>Because tab completion</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Design smells</h3>
+                        <ul>
+                            <li>Too many applications</li>
+                            <li>Overlapping responsibilities</li>
+                            <li>Too many flags for some applications</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Design fixes</h3>
+                        <ul>
+                            <li>Remove duplicate applications</li>
+                            <li>Consolidate functionality</li>
+                            <li>JSON config files to simplify calling</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Example 1 - Too many options</h3>
+                    </section>
+                    <section>
+                        <h3>C4plot has many many arguments</h3>
+                        <ul>
+                            <li>People like tweaking plots</li>
+                            <li>Adjusting colors, markers, styles, labels</li>
+                            <li>Positioning text, changing legends</li>
+                            <li>Customising statistics and graphics</li>
+                            <li>You name it, they want it</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>JSON saves the day</h3>
+                        <ul>
+                            <li>Cumbersome command line expressions</li>
+                            <li>Reduced to <strong>--config-file=hello.json</strong></li>
+                            <li>Almost a tiny DSL</li>
+                        </ul>
+                        <pre><code data-trim data-noescape>
+{
+    "default": {
+       "colors": ["Red", "Blue"]
+    },
+    "runs": [
+        {
+           "metrics": ["RMSE"],
+           "ylims": [0, 0.5]
+        },
+        {
+           "metrics": ["Bias"],
+           "ylims": [-0.1, 0.1]
+        }
+    ]
+}
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Step 2</h3>
+                        <p>Use good development practices</p>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>TDD saves time in the long run</li>
+                            <li>Refactoring allows features to be added</li>
+                            <li>Clean code speeds up developments</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Your system will evolve</p>
+                        <p>It will pick up new use cases and users</p>
+                        <p>Old features need to be maintained</p>
+                        <p>There will be too many things to remember to check</p>
+                    </section>
+                    <section>
+                        <h4>To TDD or not to TDD</h4>
+                        <p>Try to TDD as much as possible</p>
+                        <p>But know when just writing code makes sense</p>
+                        <p>Add tests when refactoring untested code</p>
+                    </section>
+                    <section>
+                        <p>Refactor all the time</p>
+                        <p>But only if you need to</p>
+                        <p>New features/fixing bugs</p>
+                    </section>
+                    <section>
+                        <h3>Example 2 - The customer is sometimes right</h3>
+                        <p>Request for relative RMSE</p>
+                        <p>A feature of the plotting system not anticipated</p>
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h3>Step 3</h3>
+                        <p>Iterate</p>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Give people what they want</li>
+                            <li>But in small manageable chunks</li>
+                            <li>Maintain a working system</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Systems always move forward gathering new moss</p>
+                        <p>Try new things</p>
+                        <p>Experiment with features</p>
+                        <p>Use your code, find the friction</p>
+                        <p>Ask your users what they need</p>
+                    </section>
+                    <section>
+                        <h3>Example 3 - Go back to the beginning</h3>
+                        <ul>
+                            <li>Request for a verification App</li>
+                            <li>Use Rose</li>
+                            <li>Add screen shots</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>
+                            <img width="50px" style="box-shadow:none; border:none; margin: 0; padding: 0;" src="rose-icon-large.png" alt="" />
+                            <a href="http://metomi.github.io/rose/doc/rose.html">Rose suite scheduler</a></h3>
+                        <img class="rose" src="rose-suite-crop.png" alt="" />
+                    </section>
+                </section>
+				<section>
+                    <h2>Conclusions</h2>
+                    <ul>
+                        <li>Systems change, be ready</li>
+                        <li>Users need help, advice and to be listened to</li>
+                        <li>Explore new ideas while preserving the old</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Lessons learned</h3>
+                    <ul>
+                        <li>Teach people to develop your code</li>
+                        <li>Library architecture might be worth it</li>
+                        <li>Technology changes</li>
+                    </ul>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                progress: true,
+                slideNumber: true,
+                history: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
