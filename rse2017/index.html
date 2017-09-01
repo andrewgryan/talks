@@ -67,8 +67,10 @@
                 <section>
                     <h3>About me</h3>
                     <ul>
-                        <li>Met Office</li>
+                        <li><a href="www.metoffice.gov.uk">Met Office</a></li>
                         <li><a href="http://www.metoffice.gov.uk/research/weather/ocean-forecasting/ocean-verification">Ocean Forecast Verification team</a></li>
+                        <li><a href="https://www.godae-oceanview.org/">Member of GODAE OceanView IV-TT</a></li>
+                        <li><a href="marine.copernicus.eu"> Contributor to CMEMS European project</a></li>
                         <li>Scientific Software Engineer</li>
                     </ul>
                 </section>
@@ -118,23 +120,78 @@
                     </section>
                 </section>
                 <section>
+                <h3>Class 4 framework</h3>
+                <div style="display:flex;">
+                    <div style="flex:0 0 55%;font-size:0.7em;">
+                        <ul>
+                            <li>Same observations for all models</li>
+                            <li>Observations grouped into 24hr window</li>
+                            <li>Forecasts valid at noon on same day</li>
+                            <li>Forecasts mapped to observation space</li>
+                            <ul>
+                                <li>Bilinear horizontal interpolation</li>
+                                <li>Cubic spline vertical interpolation</li>
+                                <li>No temporal interpolation</li>
+                            </ul>
+                            <li>Further information</li>
+                            <ul>
+                                <li><a href="https://www.godae-oceanview.org/science/task-teams/intercomparison-and-validation-tt/">GODAE IV-TT</a></li>
+                                <li><a href="http://imarest.tandfonline.com/doi/full/10.1080/1755876X.2015.1022330">Ryan et. al.</a></li>
+                            </ul>
+                        </ul>
+                    </div><div style="flex: 1;">
+                        <img style="border:none;box-shadow:none;" src="xkcd-class4.png" alt="" />
+                    </div>
+                </div>
+                </section>
+                <section>
                     <h3>Ocean observations</h3>
-                    <ul>
-                        <li>Sea surface temperature</li>
-                        <li>Full depth Temperature/Salinity</li>
-                        <li>Satellite altimetry</li>
-                        <li>Satellite sea ice</li>
-                        <li>Currents derived from floats</li>
-                    </ul>
+                    <div style="display:flex;">
+                    <div style="flex:0 0 55%;font-size:0.7em;">
+                        <ul>
+                            <li>Sea surface temperature</li>
+                            <li>Satellite altimetry</li>
+                            <li>Satellite sea ice</li>
+                            <li>Full depth Temperature/Salinity</li>
+                            <li>Currents derived from floats</li>
+                            <li>Marine mammals</li>
+                            <li>Acoustic doppler current profilers</li>
+                            <li>HF radar</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1;">
+                        <img style="width:30%; border:none;" src="ostia-map.gif" alt="" />
+                        <img style="width:30%; border:none;" src="altimeter-obs.gif" alt="" />
+                        <img style="width:30%; border:none;" src="ostia-seaice.gif" alt="" />
+                        <img style="width:30%; border:none;" src="argo-cycle.jpg" alt="" />
+                        <img style="width:30%; border:none;" src="currents-observations.png" alt="" />
+                        <img style="width:30%; border:none;" src="seals-obs.gif" alt="" />
+                    </div>
+                    </div>
                 </section>
                 <section>
                     <h3>Ocean models</h3>
+                    <div style="display:flex;">
+                    <div style="flex:0 0 55%;font-size:0.7em;">
                     <ul>
                         <li>Tri-polar global models</li>
                         <li>Eddy resolving regional models</li>
                         <li>Shelf Seas models</li>
                         <li>Coupled Ocean-Atmosphere models</li>
                     </ul>
+                    </div>
+                    <div style="flex: 1;">
+                        <img style="width:30%; border:none;" src="orca025-currents.gif" alt="" />
+                        <img style="width:30%; border:none;" src="amm7-currents.gif" alt="" />
+                        <div style: "margin: 0; padding: 0;">
+                            <img style="width:30%; border:none;" src="natl12-temperature.gif" alt="" />
+                            <img style="width:30%; border:none;" src="med12-salinity.gif" alt="" />
+                            <img style="width:30%; border:none;" src="ind12-ssh.gif" alt="" />
+                        </div>
+                        <img style="width:30%; border:none;" src="glosea-mld.gif" alt="" />
+                        <img style="width:30%; border:none;" src="cplda-seaice.gif" alt="" />
+                    </div>
+                    </div>
                 </section>
                 <section>
                     <h3>System requirements</h3>
@@ -160,6 +217,7 @@
                         <li>c4plot</li>
                         <li>c4deliver</li>
                     </ul>
+                    <p>...</p>
                 </section>
                 <section>
                     <h2>Developing the system</h2>
