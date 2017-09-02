@@ -1,0 +1,189 @@
+<!-- The slides that didn't make it -->
+                <section>
+                    <h3>Ideas</h3>
+                    <ul>
+                        <li>JSON configuration solving too many flags</li>
+                        <li>Rose suite leveraging small application design</li>
+                        <li>TDD maintaining backwards compatibility</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Developing the system</h2>
+                </section>
+                <section>
+                    <section>
+                        <h2>Step 1</h2>
+                        <p>Blank canvas</p>
+                    </section>
+                    <section>
+                        <h2>Version 0.0.0</h2>
+                        <ul>
+                            <li>When I began scientists were familiar with shell scripts and Fortran</li>
+                            <li>Python was new and not widely adopted</li>
+                            <li>So I wrote the system in Python</li>
+                            <li>With a command line feel</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Early adopters</h3>
+                        <ol>
+                            <li>cron daemon</li>
+                            <li>me</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h3>Early design</h3>
+                        <ul>
+                            <li>Linux philosophy</li>
+                            <li>Command line applications</li>
+                            <pre><code class="bash" data-trim data-noescape>
+:> c4obs --help
+:> c4extract --help
+:> c4stats --help
+:> c4plot --help
+...
+                            </code></pre>
+                            <li>Everything prefixed with <strong>c4</strong></li>
+                            <li>Because tab completion</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Design smells</h3>
+                        <ul>
+                            <li>Too many applications</li>
+                            <li>Overlapping responsibilities</li>
+                            <li>Too many flags for some applications</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Design fixes</h3>
+                        <ul>
+                            <li>Remove duplicate applications</li>
+                            <li>Consolidate functionality</li>
+                            <li>JSON config files to simplify calling</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Example 1 - Too many options</h3>
+                    </section>
+                    <section>
+                        <h3>C4plot has many many arguments</h3>
+                        <ul>
+                            <li>People like tweaking plots</li>
+                            <li>Adjusting colors, markers, styles, labels</li>
+                            <li>Positioning text, changing legends</li>
+                            <li>Customising statistics and graphics</li>
+                            <li>You name it, they want it</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>JSON saves the day</h3>
+                        <ul>
+                            <li>Cumbersome command line expressions</li>
+                            <li>Reduced to <strong>--config-file=hello.json</strong></li>
+                            <li>Almost a tiny DSL</li>
+                        </ul>
+                        <pre><code data-trim data-noescape>
+{
+    "default": {
+       "colors": ["Red", "Blue"]
+    },
+    "runs": [
+        {
+           "metrics": ["RMSE"],
+           "ylims": [0, 0.5]
+        },
+        {
+           "metrics": ["Bias"],
+           "ylims": [-0.1, 0.1]
+        }
+    ]
+}
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Step 2</h3>
+                        <p>Use good development practices</p>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>TDD saves time in the long run</li>
+                            <li>Refactoring allows features to be added</li>
+                            <li>Clean code speeds up developments</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Your system will evolve</p>
+                        <p>It will pick up new use cases and users</p>
+                        <p>Old features need to be maintained</p>
+                        <p>There will be too many things to remember to check</p>
+                    </section>
+                    <section>
+                        <h4>To TDD or not to TDD</h4>
+                        <p>Try to TDD as much as possible</p>
+                        <p>But know when just writing code makes sense</p>
+                        <p>Add tests when refactoring untested code</p>
+                    </section>
+                    <section>
+                        <p>Refactor all the time</p>
+                        <p>But only if you need to</p>
+                        <p>New features/fixing bugs</p>
+                    </section>
+                    <section>
+                        <h3>Example 2 - The customer is sometimes right</h3>
+                        <p>Request for relative RMSE</p>
+                        <p>A feature of the plotting system not anticipated</p>
+                    </section>
+                </section>
+				<section>
+                    <section>
+                        <h3>Step 3</h3>
+                        <p>Iterate</p>
+                    </section>
+                    <section>
+                        <ul>
+                            <li>Give people what they want</li>
+                            <li>But in small manageable chunks</li>
+                            <li>Maintain a working system</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p>Systems always move forward gathering new moss</p>
+                        <p>Try new things</p>
+                        <p>Experiment with features</p>
+                        <p>Use your code, find the friction</p>
+                        <p>Ask your users what they need</p>
+                    </section>
+                    <section>
+                        <h3>Example 3 - Go back to the beginning</h3>
+                        <ul>
+                            <li>Request for a verification App</li>
+                            <li>Use Rose</li>
+                            <li>Add screen shots</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>
+                            <img width="50px" style="box-shadow:none; border:none; margin: 0; padding: 0;" src="rose-icon-large.png" alt="" />
+                            <a href="http://metomi.github.io/rose/doc/rose.html">Rose suite scheduler</a></h3>
+                        <img class="rose" src="rose-suite-crop.png" alt="" />
+                    </section>
+                </section>
+				<section>
+                    <h2>Conclusions</h2>
+                    <ul>
+                        <li>Systems change, be ready</li>
+                        <li>Users need help, advice and to be listened to</li>
+                        <li>Explore new ideas while preserving the old</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Lessons learned</h3>
+                    <ul>
+                        <li>Teach people to develop your code</li>
+                        <li>Library architecture might be worth it</li>
+                        <li>Technology changes</li>
+                    </ul>
+                </section>
