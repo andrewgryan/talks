@@ -67,49 +67,18 @@
                     </ul>
                 </section>
                 <section>
-                    <section>
-                        <h3>GODAE OceanView</h3>
-                        <p>Global Ocean inter-comparison project</p>
-                        <img src="noaa-logo.svg" class="institute" alt="" />
-                        <img src="mercator-ocean-logo.jpg" class="institute" alt="" />
-                        <img src="environment-canada-logo.png" class="institute" alt="" />
-                        <img src="met-office.svg" class="institute" alt="" />
-                        <img src="bom-logo.png" class="institute" alt="" />
-                        <img src="csiro-logo.png" class="institute" alt="" />
-                        <p>Ocean Verification Framework called "Class 4"</p>
-                    </section>
-                    <section>
-                        <h3>European Commission</h3>
-                        <a href="http://marine.copernicus.eu/services-portfolio/scientific-quality/#mfcs|global|global-analysis-forecast-phys-001-015|sst-driftingbuoy">
-                        <img class="rose" src="cmems-screenshot.png" alt="" />
-                        </a>
-                    </section>
-                    <section>
-                        <h3>Met Office monitoring</h3>
-                        <img class="met-office-web" src="web-screenshot.png" alt="" />
-                    </section>
-                    <section>
-                        <h3>Publications</h3>
-                        <h4>Journal of Operational Oceanography</h4>
-
-                        <div style="display:inline-block">
-
-                        <!-- My paper -->
-                        <a href="http://imarest.tandfonline.com/doi/full/10.1080/1755876X.2015.1022330">
-                            <img style="display:block" src="ryan-abstract-crop.png" class="paper" alt="" />
-                        </a>
-
-                        <!-- Prasanth's paper -->
-                        <a href="http://www.tandfonline.com/doi/full/10.1080/1755876X.2015.1022333">
-                            <img style="display:block" src="divakaran-abstract-crop.png" class="paper" alt="" />
-                        </a>
-                        </div>
-
-                        <!-- Fabrice's paper -->
-                        <a href="http://www.tandfonline.com/doi/full/10.1080/1755876X.2015.1050282">
-                            <img src="hernandez-abstract-crop.png" class="paper" alt="" />
-                        </a>
-                    </section>
+                    <h2>Part 1: Problem domain</h2>
+                </section>
+                <section>
+                    <h3>GODAE OceanView</h3>
+                    <p>Global Ocean inter-comparison project</p>
+                    <img src="noaa-logo.svg" class="institute" alt="" />
+                    <img src="mercator-ocean-logo.jpg" class="institute" alt="" />
+                    <img src="environment-canada-logo.png" class="institute" alt="" />
+                    <img src="met-office.svg" class="institute" alt="" />
+                    <img src="bom-logo.png" class="institute" alt="" />
+                    <img src="csiro-logo.png" class="institute" alt="" />
+                    <p>Ocean Verification Framework called "Class 4"</p>
                 </section>
                 <section>
                 <h3>Class 4 framework</h3>
@@ -140,25 +109,32 @@
                     <div style="display:flex;">
                     <div style="flex:0 0 55%;font-size:0.7em;">
                         <ul>
-                            <li>Sea surface temperature</li>
-                            <li>Satellite altimetry</li>
-                            <li>Satellite sea ice concentration</li>
-                            <li>Temperature &amp; salinity profiles</li>
-                            <li>Currents derived from floats</li>
-                            <li>Marine mammals</li>
-                            <li>Acoustic doppler current profilers</li>
-                            <li>HF radar</li>
-                            <li>Gliders</li>
-                            <li>...</li>
+                            <li>In-situ</li>
+                            <ul>
+                                <li>Sea surface temperature</li>
+                                <li>Temperature &amp; salinity profiles</li>
+                                <li>Currents derived from floats</li>
+                                <li>Marine mammals</li>
+                                <li>Acoustic doppler current profilers</li>
+                                <li>HF radar</li>
+                                <li>Gliders</li>
+                            </ul>
+                            <li>Satellite</li>
+                            <ul>
+                                <li>Sea surface temperature</li>
+                                <li>Altimetry</li>
+                                <li>Sea ice concentration</li>
+                                <li>Chlorophyll</li>
+                            </ul>
                         </ul>
                     </div>
                     <div style="flex: 1;">
-                        <img style="width:30%; border:none;" src="ostia-map.gif" alt="" />
-                        <img style="width:30%; border:none;" src="altimeter-obs.gif" alt="" />
-                        <img style="width:30%; border:none;" src="ostia-seaice.gif" alt="" />
-                        <img style="width:30%; border:none;" src="argo-cycle.jpg" alt="" />
-                        <img style="width:30%; border:none;" src="currents-observations.png" alt="" />
-                        <img style="width:30%; border:none;" src="seals-obs.gif" alt="" />
+                        <img style="width:40%; border:none;" src="ostia-map.gif" alt="" />
+                        <img style="width:40%; border:none;" src="altimeter-obs.gif" alt="" />
+                        <img style="width:40%; border:none;" src="ostia-seaice.gif" alt="" />
+                        <img style="width:40%; border:none;" src="argo-cycle.jpg" alt="" />
+                        <img style="width:40%; border:none;" src="currents-observations.png" alt="" />
+                        <img style="width:40%; border:none;" src="seals-obs.gif" alt="" />
                     </div>
                     </div>
                 </section>
@@ -167,51 +143,84 @@
                     <div style="display:flex;">
                     <div style="flex:0 0 55%;font-size:0.7em;">
                     <ul>
-                        <li>Tri-polar global models</li>
-                        <li>Eddy resolving regional models</li>
-                        <li>Shelf Seas models</li>
-                        <li>Coupled Ocean-Atmosphere models</li>
-                        <li>Diagnostics:</li>
+                        <li>Modelling infrastructure</li>
                         <ul>
-                            <li>3D temperature</li>
-                            <li>3D salinity</li>
-                            <li>3D currents</li>
+                            <li>Tri-polar global models</li>
+                            <li>Eddy resolving regional models</li>
+                            <li>Shelf Seas models</li>
+                            <li>Coupled Ocean-Atmosphere models</li>
+                            <li>Biogeochemistry models</li>
+                        </ul>
+                        <li>Diagnostics</li>
+                        <ul>
+                            <li>Temperature</li>
+                            <li>Salinity</li>
+                            <li>Currents</li>
                             <li>Sea surface height</li>
+                        </ul>
+                        <li>Vertical coordinates</li>
+                        <ul>
+                            <li>Fixed depth</li>
+                            <li>Terrain following</li>
                         </ul>
                     </ul>
                     </div>
                     <div style="flex: 1;">
-                        <img style="width:30%; border:none;" src="orca025-currents.gif" alt="" />
-                        <img style="width:30%; border:none;" src="amm7-currents.gif" alt="" />
+                        <img style="width:40%; border:none;" src="orca025-currents.gif" alt="" />
+                        <img style="width:40%; border:none;" src="amm7-currents.gif" alt="" />
                         <div style: "margin: 0; padding: 0;">
                             <img style="width:30%; border:none;" src="natl12-temperature.gif" alt="" />
                             <img style="width:30%; border:none;" src="med12-salinity.gif" alt="" />
                             <img style="width:30%; border:none;" src="ind12-ssh.gif" alt="" />
                         </div>
-                        <img style="width:30%; border:none;" src="glosea-mld.gif" alt="" />
-                        <img style="width:30%; border:none;" src="cplda-seaice.gif" alt="" />
+                        <img style="width:45%; border:none;" src="glosea-mld.gif" alt="" />
+                        <img style="width:45%; border:none;" src="cplda-seaice.gif" alt="" />
                     </div>
                     </div>
                 </section>
                 <section>
-                    <h1>...</h1>
+                    <h3>[insert software here]</h3>
                 </section>
                 <section>
-                    <h3>Visualisations, reports, publications, websites</h3>
+                    <h3>Visualisations, publications, websites</h3>
+                    <a href="http://marine.copernicus.eu/services-portfolio/scientific-quality/#mfcs|global|global-analysis-forecast-phys-001-015|sst-driftingbuoy">
+                        <img style="width:30%;" class="rose" src="cmems-screenshot.png" alt="" />
+                    </a>
+                    <img style="width:30%;" class="met-office-web" src="web-screenshot.png" alt="" />
+                    <img style="width:30%; border:none; box-shadow:none;" src="ivtt-radar-chart.png" alt="" />
+
+
+                        <!-- My paper -->
+                        <a href="http://imarest.tandfonline.com/doi/full/10.1080/1755876X.2015.1022330">
+                            <img style="width: 30%; border:none; box-shadow:none;" src="ryan-abstract-crop.png" alt="" />
+                        </a>
+
+                        <!-- Prasanth's paper -->
+                        <a href="http://www.tandfonline.com/doi/full/10.1080/1755876X.2015.1022333">
+                            <img style="width: 30%; border:none; box-shadow:none;" src="divakaran-abstract-crop.png" alt="" />
+                        </a>
+
+                        <!-- Fabrice's paper -->
+                        <a href="http://www.tandfonline.com/doi/full/10.1080/1755876X.2015.1050282">
+                            <img style="width: 30%; border:none; box-shadow:none;" src="hernandez-abstract-crop.png" alt="" />
+                        </a>
                 </section>
                 <section>
-                    <h3>Software requirements</h3>
+                    <h2>Part 2: Solution domain</h2>
+                </section>
+                <section>
+                    <h3>Requirements</h3>
                     <ul>
                         <li>Interpolate forecasts to observation space</li>
                             <ul>
                                 <li>Support all model grids</li>
                                 <li>Support all ocean observations</li>
                             </ul>
-                        <li>Disseminate data to collaborators</li>
-                        <li>Compute basin scale summary statistics</li>
+                        <li>Share data with collaborators</li>
+                        <li>Compute verification metrics</li>
                         <li>Visualise metrics</li>
-                        <li>Archive results</li>
-                        <li>Tie it all together</li>
+                        <li>Maintain archive</li>
+                        <li>Tie it all together in one system</li>
                     </ul>
                 </section>
                 <section>
