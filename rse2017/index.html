@@ -225,11 +225,15 @@
                 </section>
                 <section>
                     <h2>Sharing data</h2>
+                </section>
+                <section>
+                    <h3>GODAE Class 4 inter-comparison</h3>
                     <ul>
-                        <li>Standardised formats</li>
-                        <li>Allow inter-operable tools</li>
-                        <li>Historical record</li>
-                        <li>Files made in 2009 still valid</li>
+                        <li>Defined common observations</li>
+                        <li>Standardised file formats</li>
+                        <li>Developed inter-operable tools</li>
+                        <li>Maintains historical record</li>
+                        <li>Files made in 2009 are usable today</li>
                     </ul>
                 </section>
                 <section data-markdown="dump.md"></section>
@@ -237,32 +241,58 @@
                     <h2>Choosing interpolators</h2>
                 </section>
                 <section>
-                    <h3>Existing solution</h3>
+                    <h3><img style="border:none;box-shadow:none;" src="nemo-logo.png" alt="" /> Ocean model interpolator</h3>
                     <ul>
-                        <li>Large Fortran code base</li>
-                        <li>Complicated build system</li>
-                        <li>Monolithic design</li>
-                        <li>Fortran namelists</li>
-                        <li>Third party release cycle</li>
-                        <li>Many required input files</li>
-                        <li>Libraries only available on super computer</li>
-                        <li>Designed for different purpose</li>
+                        <li>Pros</li>
+                        <ul>
+                            <li>Interpolates all model domains</li>
+                            <li>Already developed</li>
+                        </ul>
+                        <li>Cons</li>
+                        <ul>
+                            <li>Large Fortran code base</li>
+                            <li>Complicated build system</li>
+                            <li>Monolithic design</li>
+                            <li>Breaking changes during release cycles</li>
+                            <li>Many required input files</li>
+                            <li>Designed for different purpose</li>
+                        </ul>
                     </ul>
                 </section>
                 <section>
-                    <h3>Re-write the interpolator component</h3>
+                    <h3>Python re-write</h3>
                     <ul>
-                        <li>Initially labour intensive</li>
-                        <li>Simple API</li>
-                        <li>Numpy array inputs</li>
-                        <li>No need for input files</li>
-                        <li>No Fortran namelist manipulation</li>
-                        <li>No need for supercomputer scheduler</li>
-                        <li>Optimised search algorithms</li>
+                        <li>Pros</li>
+                        <ul>
+                            <li>Simple API</li>
+                            <li>Numpy array inputs</li>
+                            <li>No need for input files</li>
+                            <li>No Fortran namelist manipulation</li>
+                            <li>No need for supercomputer scheduler</li>
+                            <li>Optimised search algorithms</li>
+                            <li>Complete control over source code</li>
+                        </ul>
+                        <li>Cons</li>
+                        <ul>
+                            <li>Initially labour intensive</li>
+                            <li>New grids may require new algorithms</li>
+                        </ul>
                     </ul>
                 </section>
                 <section>
                     <h2>Visualisations</h2>
+                </section>
+                <section>
+                    <h3>c4plot</h3>
+                    <pre><code class="bash" data-trim data-noescape>
+c4plot STATSFILE [STATSFILE...]
+                    </code></pre>
+                    <ul>
+                        <li>compares results from different models</li>
+                        <li>implements all plots</li>
+                    </ul>
+                </section>
+                <section>
                     <ul>
                         <li>Swiss army knife command line interface</li>
                         <li>JSON configuration simplifies it</li>
@@ -273,9 +303,22 @@
                 <section>
                     <h2>Tie it all together</h2>
                     <ul>
+                        <li>Large collection of command line utilities</li>
                         <li>Rose suite</li>
                         <li>Glues many applications together</li>
                         <li>Leverages system design</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        <img width="50px" style="box-shadow:none; border:none; margin: 0; padding: 0;" src="rose-icon-large.png" alt="" />
+                        <a href="http://metomi.github.io/rose/doc/rose.html">Rose suite scheduler</a></h3>
+                    <img class="rose" src="rose-suite-crop.png" alt="" />
+                </section>
+                <section>
+                    <h3>Summary</h3>
+                    <ul>
+                        <li>Routine verification of ocean models</li>
                     </ul>
                 </section>
 			</div>

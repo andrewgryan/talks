@@ -1,4 +1,7 @@
 ## NetCDF Class 4 format
+
+Defined variable names, dimensions and meta-data
+
 ```
 netcdf class4_20170823_FOAM_orca025_12.0_SST {
 dimensions:
