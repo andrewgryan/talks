@@ -211,64 +211,54 @@
                 <section>
                     <h3>Requirements</h3>
                     <ul>
-                        <li>Interpolate forecasts to observation space</li>
+                        <li class="fragment highlight-red">Share data with collaborators</li>
+                        <li class="fragment highlight-red">Interpolate forecasts to observation space</li>
                             <ul>
                                 <li>Support all model grids</li>
                                 <li>Support all ocean observations</li>
                             </ul>
-                        <li>Share data with collaborators</li>
                         <li>Compute verification metrics</li>
-                        <li>Visualise metrics</li>
+                        <li class="fragment highlight-red">Visualise metrics</li>
                         <li>Maintain archive</li>
-                        <li>Tie it all together in one system</li>
+                        <li class="fragment highlight-red">Tie it all together in one system</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>System architecture</h2>
-                    <p>Multiple command line applications</p>
+                    <h2>Sharing data</h2>
                     <ul>
-                        <li>c4obs</li>
-                        <li>c4extract</li>
-                        <li>c4interp</li>
-                        <li>c4stats</li>
-                        <li>c4plot</li>
-                        <li>c4deliver</li>
-                    </ul>
-                    <p>...</p>
-                </section>
-                <section>
-                    <h2>Common file formats</h2>
-                    <ul>
-                        <li>Collaborative project</li>
-                        <li>Inter-operability of tools</li>
+                        <li>Standardised formats</li>
+                        <li>Allow inter-operable tools</li>
                         <li>Historical record</li>
                         <li>Files made in 2009 still valid</li>
                     </ul>
                 </section>
+                <section data-markdown="dump.md"></section>
                 <section>
-                    <h2>Map to observation space</h2>
+                    <h2>Choosing interpolators</h2>
+                </section>
+                <section>
+                    <h3>Existing solution</h3>
                     <ul>
-                        <li>Ocean model interpolator</li>
-                        <ul>
-                            <li>Large Fortran code base</li>
-                            <li>Complicated build system</li>
-                            <li>Monolithic design</li>
-                            <li>Fortran namelists</li>
-                            <li>Third party release cycle</li>
-                            <li>Many required input files</li>
-                            <li>Libraries only available on super computer</li>
-                            <li>Designed for different purpose</li>
-                        </ul>
-                        <li>Re-written Python package</li>
-                        <ul>
-                            <li>Initially labour intensive</li>
-                            <li>Simple API</li>
-                            <li>Numpy array inputs</li>
-                            <li>No need for input files</li>
-                            <li>No Fortran namelist manipulation</li>
-                            <li>No need for supercomputer scheduler</li>
-                            <li>Optimised search algorithms</li>
-                        </ul>
+                        <li>Large Fortran code base</li>
+                        <li>Complicated build system</li>
+                        <li>Monolithic design</li>
+                        <li>Fortran namelists</li>
+                        <li>Third party release cycle</li>
+                        <li>Many required input files</li>
+                        <li>Libraries only available on super computer</li>
+                        <li>Designed for different purpose</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Re-write the interpolator component</h3>
+                    <ul>
+                        <li>Initially labour intensive</li>
+                        <li>Simple API</li>
+                        <li>Numpy array inputs</li>
+                        <li>No need for input files</li>
+                        <li>No Fortran namelist manipulation</li>
+                        <li>No need for supercomputer scheduler</li>
+                        <li>Optimised search algorithms</li>
                     </ul>
                 </section>
                 <section>
