@@ -1,4 +1,125 @@
 <!-- The slides that didn't make it -->
+<section>
+    <h3>Relative statistics</h3>
+    <ul>
+        <li>User selectable model/experiment</li>
+        <li>Images show errors relative to chosen data</li>
+        <li>Extension to CLI</li>
+    </ul>
+    <pre><code data-trim class="bash">
+> c4plot \
+--relative-to 'MODEL A' \
+--metrics 'Relative RMSE' \
+stats_model_a.nc stats_model_b.nc
+    </code></pre>
+</section>
+                <section>
+                    <h3>Visualisations</h3>
+                    <p>c4plot has too many options</p>
+                    <pre><code data-trim data-noescape>
+c4plot [-h] [--image-dir DIR] [--date-range DATE_RANGE]
+       [--depth-range DEPTH_RANGE] [--charts CHARTS]
+       [--areas AREAS] [--metrics METRICS] [--datasets DATASETS]
+       [--forecasts FORECASTS] [--leadtimes LEADTIMES]
+       [--signal KIND,AVG,[LENGTH]] [--relative-to RELATIVE_TO]
+       [--period PERIOD] [--colors COLORS] [--colorby COLORBY]
+       [--markers MARKERS] [--markerby MARKERBY]
+       [--linestyles LINESTYLES] [--linestyleby LINESTYLEBY]
+       [--ylims YLIMS] [--axhline VALUE,[LINESTYLE,[COLOR]]]
+       [--dpi DPI] [--title-off] [--title-y VALUE]
+       [--netcdf-attribute ATTR] [--use-available-images]
+       [--no-web] [--no-index-html] [--web-dir DIR]
+       [--web-title TEXT] [--web-index-html FILE]
+       [--web-menu-json FILE] [--category CATEGORY]
+       [--config-file CONFIG_FILE]
+       FILE [FILE ...]
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Tie it all together</h2>
+                    <ul>
+                        <li>Large collection of command line utilities</li>
+                        <li>Rose suite</li>
+                        <li>Glues many applications together</li>
+                        <li>Leverages system design</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>
+                        <img width="50px" style="box-shadow:none; border:none; margin: 0; padding: 0;" src="rose-icon-large.png" alt="" />
+                        <a href="http://metomi.github.io/rose/doc/rose.html">Rose suite scheduler</a></h3>
+                    <img class="rose" src="rose-suite-crop.png" alt="" />
+                </section>
+                <section>
+                    <h2>Interpolating forecasts to observations</h2>
+                    <ul>
+                        <li>Two choices:</li>
+                        <ul>
+                            <li>Use existing ocean model code</li>
+                            <li>Develop simpler Python package</li>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <h3><img style="border:none;box-shadow:none;" src="nemo-logo.png" alt="" /> Ocean model interpolator</h3>
+                    <ul>
+                        <li>Pros</li>
+                        <ul>
+                            <li>Interpolates all model domains</li>
+                            <li>Already developed</li>
+                        </ul>
+                        <li>Cons</li>
+                        <ul>
+                            <li>Large Fortran code base</li>
+                            <li>Complicated build system</li>
+                            <li>Monolithic design</li>
+                            <li>Breaking changes during release cycles</li>
+                            <li>Many required input files</li>
+                            <li>Designed for different purpose</li>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Python re-write</h3>
+                    <ul>
+                        <li>Pros</li>
+                        <ul>
+                            <li>Simple API</li>
+                            <li>Numpy array inputs</li>
+                            <li>No need for input files</li>
+                            <li>No Fortran namelist manipulation</li>
+                            <li>No need for supercomputer scheduler</li>
+                            <li>Optimised search algorithms</li>
+                            <li>Complete control over source code</li>
+                        </ul>
+                        <li>Cons</li>
+                        <ul>
+                            <li>Initially labour intensive</li>
+                            <li>New grids may require new algorithms</li>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Visualisations</h2>
+                </section>
+                <section>
+                    <h3>c4plot</h3>
+                    <pre><code class="bash" data-trim data-noescape>
+c4plot STATSFILE [STATSFILE...]
+                    </code></pre>
+                    <ul>
+                        <li>compares results from different models</li>
+                        <li>implements all plots</li>
+                    </ul>
+                </section>
+                <section>
+                    <ul>
+                        <li>Swiss army knife command line interface</li>
+                        <li>JSON configuration simplifies it</li>
+                        <li>Makes single applications cover many use cases</li>
+                        <li>More restrictive than library but better for automation</li>
+                    </ul>
+                </section>
                 <section>
                     <h2>System architecture</h2>
                     <p>Multiple command line applications</p>

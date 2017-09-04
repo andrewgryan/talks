@@ -67,9 +67,6 @@
                     </ul>
                 </section>
                 <section>
-                    <h2>Part 1: Problem domain</h2>
-                </section>
-                <section>
                     <h3>GODAE OceanView</h3>
                     <p>Global Ocean inter-comparison project</p>
                     <img src="noaa-logo.svg" class="institute" alt="" />
@@ -79,6 +76,9 @@
                     <img src="bom-logo.png" class="institute" alt="" />
                     <img src="csiro-logo.png" class="institute" alt="" />
                     <p>Ocean Verification Framework called "Class 4"</p>
+                </section>
+                <section>
+                    <h2>Part 1: Problem domain</h2>
                 </section>
                 <section>
                 <h3>Class 4 framework</h3>
@@ -211,114 +211,202 @@
                 <section>
                     <h3>Requirements</h3>
                     <ul>
-                        <li class="fragment highlight-red">Share data with collaborators</li>
-                        <li class="fragment highlight-red">Interpolate forecasts to observation space</li>
+                        <li class="fragment">Share data with collaborators</li>
+                        <li class="fragment">Interpolate forecasts to observation space</li>
                             <ul>
-                                <li>Support all model grids</li>
-                                <li>Support all ocean observations</li>
+                                <li class="fragment">Support all model grids</li>
+                                <li class="fragment">Support all ocean observations</li>
                             </ul>
-                        <li>Compute verification metrics</li>
-                        <li class="fragment highlight-red">Visualise metrics</li>
-                        <li>Maintain archive</li>
-                        <li class="fragment highlight-red">Tie it all together in one system</li>
+                        <li class="fragment">Compute verification metrics</li>
+                        <li class="fragment">Visualise metrics</li>
+                        <li class="fragment">Maintain archive</li>
+                        <li class="fragment">Tie it all together in one system</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>Sharing data</h2>
+                    <h3>Architecture</h3>
+                    <p>Broke requirements down into several applications</p>
+                    <pre><code data-trim>
+> c4obs --help
+> c4extract --help
+> c4interp --help
+> c4stats --help
+> c4plot --help
+> c4deliver --help
+                    </code></pre>
+                    <p>Each application has a single responsibility and
+                       a problem specific interface</p>
                 </section>
                 <section>
-                    <h3>GODAE Class 4 inter-comparison</h3>
+                    <h3>File formats</h3>
                     <ul>
-                        <li>Defined common observations</li>
-                        <li>Standardised file formats</li>
-                        <li>Developed inter-operable tools</li>
-                        <li>Maintains historical record</li>
-                        <li>Files made in 2009 are usable today</li>
+                        <li>Format for model/observation pairs</li>
+                        <li>Format for summary statistics</li>
                     </ul>
                 </section>
                 <section data-markdown="dump.md"></section>
                 <section>
-                    <h2>Choosing interpolators</h2>
-                </section>
-                <section>
-                    <h3><img style="border:none;box-shadow:none;" src="nemo-logo.png" alt="" /> Ocean model interpolator</h3>
+                    <h3>Development practices</h3>
+                    <p style="text-align:left;">
+                    To guarantee system integrity, resilience and backwards compatibility
+                    </p>
                     <ul>
-                        <li>Pros</li>
-                        <ul>
-                            <li>Interpolates all model domains</li>
-                            <li>Already developed</li>
-                        </ul>
-                        <li>Cons</li>
-                        <ul>
-                            <li>Large Fortran code base</li>
-                            <li>Complicated build system</li>
-                            <li>Monolithic design</li>
-                            <li>Breaking changes during release cycles</li>
-                            <li>Many required input files</li>
-                            <li>Designed for different purpose</li>
-                        </ul>
+                        <li>Version control</li>
+                        <li>Test driven development</li>
+                        <li>Refactoring</li>
+                        <li>Code review</li>
+                        <li>Semantic versioning</li>
                     </ul>
                 </section>
                 <section>
-                    <h3>Python re-write</h3>
+                    <h3>Unit tests</h3>
                     <ul>
-                        <li>Pros</li>
-                        <ul>
-                            <li>Simple API</li>
-                            <li>Numpy array inputs</li>
-                            <li>No need for input files</li>
-                            <li>No Fortran namelist manipulation</li>
-                            <li>No need for supercomputer scheduler</li>
-                            <li>Optimised search algorithms</li>
-                            <li>Complete control over source code</li>
-                        </ul>
-                        <li>Cons</li>
-                        <ul>
-                            <li>Initially labour intensive</li>
-                            <li>New grids may require new algorithms</li>
-                        </ul>
+                        <li>Class 4 system spread over several packages</li>
+                        <li>Approx. 2,000 unit tests covering main packages</li>
                     </ul>
-                </section>
-                <section>
-                    <h2>Visualisations</h2>
-                </section>
-                <section>
-                    <h3>c4plot</h3>
-                    <pre><code class="bash" data-trim data-noescape>
-c4plot STATSFILE [STATSFILE...]
+                    <pre><code data-trim>
+[17:12]: nosetests c4data
+.................................................................
+-----------------------------------------------------------------
+Ran 724 tests in 2.418s
                     </code></pre>
+                    <pre><code data-trim>
+[17:12]: nosetests c4tools
+.................................................................
+-----------------------------------------------------------------
+Ran 870 tests in 4.357s
+                    </code></pre>
+                    <pre><code data-trim>
+[17:12]: nosetests obsoper
+.................................................................
+-----------------------------------------------------------------
+Ran 376 tests in 0.167s
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Code reviews</h3>
                     <ul>
-                        <li>compares results from different models</li>
-                        <li>implements all plots</li>
+                        <li>Light weight process conducted using trac tickets</li>
                     </ul>
                 </section>
                 <section>
+                    <h3>Interpolators</h3>
+                </section>
+                <section>
+                    <h3>NEMO observation operator</h3>
                     <ul>
-                        <li>Swiss army knife command line interface</li>
-                        <li>JSON configuration simplifies it</li>
-                        <li>Makes single applications cover many use cases</li>
-                        <li>More restrictive than library but better for automation</li>
+                        <li>Requires dozens of input files</li>
+                        <li>Complicated build system</li>
+                        <li>Release cycle often introduces breaking changes</li>
+                        <li>Already solved my problem</li>
+                        <li>Works for all models</li>
                     </ul>
                 </section>
                 <section>
-                    <h2>Tie it all together</h2>
+                <h3>Input files needed by NEMO</h3>
+                <p>For each forecast all of these files are needed.</p>
+                <pre><code class="bash" data-trim>
+1_namelist_cfg
+1_namelist_ice_cfg
+1_namelist_ref
+AGRIF_FixedGrids.in
+K1rowdrg.nc
+M2rowdrg.nc
+bathy_meter.nc
+bfr_coef.nc
+cf_name_table.txt
+coordinates.nc
+coords_CF.nc
+domain_def.xml
+field_def.xml
+geothermal_heating.nc
+grids.nc
+iodef.xml
+layout.dat
+mask_itf.nc
+model.nc
+modelMDT.nc
+namelist_cfg
+namelist_ice_cfg
+namelist_ice_ref
+namelist_ref
+ocean.output
+opa
+output.namelist.dyn
+profb_01_fdbk.nc
+profb_godae_20170830.nc
+runoff_1m_nomask.nc
+slaReferenceLevel.nc
+slafb_01_fdbk.nc
+slafb_godae_20170830.nc
+sss_1m.nc
+sstfb_01_fdbk.nc
+sstfb_godae_20170830.nc
+subbasins.nc
+submit-fbcomb.pbs
+submit.pbs
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Other complications</h3>
                     <ul>
-                        <li>Large collection of command line utilities</li>
-                        <li>Rose suite</li>
-                        <li>Glues many applications together</li>
-                        <li>Leverages system design</li>
+                        <li>Fortran 90 namelists need to be manipulated</li>
+                        <li>Libraries only available on the super-computer</li>
+                        <li>Impossible to test subroutines in isolation</li>
                     </ul>
                 </section>
                 <section>
-                    <h3>
-                        <img width="50px" style="box-shadow:none; border:none; margin: 0; padding: 0;" src="rose-icon-large.png" alt="" />
-                        <a href="http://metomi.github.io/rose/doc/rose.html">Rose suite scheduler</a></h3>
-                    <img class="rose" src="rose-suite-crop.png" alt="" />
+                    <h3>Python observation operator</h3>
+                    <ul>
+                        <li>Available on PYPI and github</li>
+                        <li>Uses Cython to speed up loop-oriented algorithms</li>
+                        <li>API only requires numpy arrays</li>
+                        <li>Continuous integration with Travis CI</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Visualisation</h3>
+                    <p>Basic command line interface</p>
+                    <pre><code class="bash" data-trim>c4plot stats*.nc</code></pre>
+                    <p>Custom colors, line styles, markers</p>
+                    <pre><code class="bash" data-trim>c4plot --colors red,green,blue --markers='.,x' --linestyles=':,-' stats*.nc</code></pre>
+                    <p>All bells and whistles</p>
+                    <pre><code class="bash" data-trim>c4plot --title-y 0.9 --ylims 0,1 --metrics RMSE,Bias --regions='Indian Ocean' --colors red,green,blue --markers='.,x' --linestyles=':,-' stats*.nc</code></pre>
+                </section>
+                <section>
+                    <h3>Config files</h3>
+                    <p>Put options into a JSON structure</p>
+                    <pre><code class="bash">c4plot --config-file=file.json stats*.nc</code></pre>
+                    <pre><code data-trim data-noescape>
+{
+    "default": {
+       "colors": ["Red", "Blue"],
+       "ylims": [0, 0.5]
+    },
+    "runs": [
+        {
+           "metrics": ["RMSE"]
+        },
+        {
+           "metrics": ["Bias"],
+           "ylims": [-0.1, 0.1]
+        }
+    ]
+}
+                        </code></pre>
+                </section>
+                <section>
+                    <h3>Glue applications together into a suite</h3>
                 </section>
                 <section>
                     <h3>Summary</h3>
                     <ul>
-                        <li>Routine verification of ocean models</li>
+                        <li class="fragment">Ocean verification is performed routinely</li>
+                        <li class="fragment">Output informs decision makers</li>
+                        <li class="fragment">The system is scalable across machines</li>
+                        <li class="fragment">Users suggest new features</li>
+                        <li class="fragment">Developers get feedback</li>
+                        <li class="fragment">Good development practices are followed</li>
                     </ul>
                 </section>
 			</div>
