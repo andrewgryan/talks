@@ -179,6 +179,23 @@
                     </div>
                 </section>
                 <section>
+                    <h3>Verification metrics</h3>
+                    <ul>
+                        <li>Match ups</li>
+                        <ul>
+                            <li>Observation: $\vec{o} = F_o(\lambda, \phi)$</li>
+                            <li>Forecast: $\vec{f} = F_f(\lambda, \phi)$</li>
+                        </ul>
+                        <li>Summary measures</li>
+                        <ul>
+                            <li>RMSE: $\sum{(f_i - o_i)^2} / N$</li>
+                            <li>MAE: $\sum{\mid f_i - o_i \mid} / N$</li>
+                            <li>Bias: $\sum{(f_i - o_i)} / N$</li>
+                            <li>Correlation: $covar(\vec{f}, \vec{o}) / (var(\vec{f}) var(\vec{o}))^{1/2}$</li>
+                        </ul>
+                    </ul>
+                </section>
+                <section>
                     <h3>[insert software here]</h3>
                 </section>
                 <section>
@@ -435,7 +452,9 @@ submit.pbs
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    // MathJax
+                    { src: 'plugin/math/math.js', async: true }
 				]
 			});
 		</script>
