@@ -348,13 +348,25 @@ Ran 376 tests in 0.167s
                     <h3>Visualisation</h3>
                     <p>Basic command line interface</p>
                     <pre><code class="bash" data-trim>c4plot stats*.nc</code></pre>
-                    <p>Custom colors, line styles, markers</p>
-                    <pre><code class="bash" data-trim>c4plot --colors red,green,blue --markers='.,x' --linestyles=':,-' stats*.nc</code></pre>
+                    <p>Custom colors and markers</p>
+                    <pre><code class="bash" data-trim>c4plot --colors red,green,blue --markers='.,x' stats*.nc</code></pre>
                     <p>All bells and whistles</p>
                     <pre><code class="bash" data-trim>c4plot --title-y 0.9 --ylims 0,1 --metrics RMSE,Bias --regions='Indian Ocean' --colors red,green,blue --markers='.,x' --linestyles=':,-' stats*.nc</code></pre>
                 </section>
                 <section>
-                    <h3>Config files</h3>
+                    <h3>Command line bloat</h3>
+                    <ul>
+                        <li>Features added all the time</li>
+                        <li>Customisations requested often</li>
+                        <li>Solutions:</li>
+                        <ol>
+                            <li class="fragment">Abandon command line approach and build library</li>
+                            <li class="fragment">Define a domain specific config format</li>
+                        </ol>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Domain specific config files</h3>
                     <p>Put options into a JSON structure</p>
                     <pre><code class="bash">c4plot --config-file=file.json stats*.nc</code></pre>
                     <pre><code data-trim data-noescape>
@@ -392,6 +404,8 @@ Ran 376 tests in 0.167s
                                     <li>Cycles and clock-triggers tasks</li>
                                     <li>Logs stdout and stderr</li>
                                     <li>Fits quite nicely with Class 4 architecture</li>
+                                    <li>Each task runs independently</li>
+                                    <li>Communication via files</li>
                                 </ul>
                             </div>
                             <div style="flex: 1;">
