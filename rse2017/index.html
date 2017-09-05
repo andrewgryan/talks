@@ -259,7 +259,7 @@
                         </ol>
                         <li>Files exchanged via a server</li>
                         <li>Enable consistent comparison of data</li>
-                        <li>Tools build on top of standard formats</li>
+                        <li>Tools build on top of file formats</li>
                     </ul>
                 </section>
                 <section data-markdown="class4-dump.md"></section>
@@ -346,19 +346,25 @@ Ran 376 tests in 0.167s
                 </section>
                 <section>
                     <h3>Visualisation</h3>
-                    <p>Basic command line interface</p>
-                    <pre><code class="bash" data-trim>c4plot stats*.nc</code></pre>
-                    <p>Custom colors and markers</p>
-                    <pre><code class="bash" data-trim>c4plot --colors red,green,blue --markers='.,x' stats*.nc</code></pre>
-                    <p>All bells and whistles</p>
-                    <pre><code class="bash" data-trim>c4plot --title-y 0.9 --ylims 0,1 --metrics RMSE,Bias --regions='Indian Ocean' --colors red,green,blue --markers='.,x' --linestyles=':,-' stats*.nc</code></pre>
+                    <div class="fragment">
+                        <p>Basic command line interface</p>
+                        <pre><code class="bash" data-trim>c4plot stats*.nc</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <p>Custom colors and markers</p>
+                        <pre><code class="bash" data-trim>c4plot --colors red,green,blue --markers='.,x' stats*.nc</code></pre>
+                    </div>
+                    <div class="fragment">
+                        <p>All bells and whistles</p>
+                        <pre><code class="bash" data-trim>c4plot --title-y 0.9 --ylims 0,1 --metrics RMSE,Bias --regions='Indian Ocean' --colors red,green,blue --markers='.,x' --linestyles=':,-' stats*.nc</code></pre>
+                    </div>
                 </section>
                 <section>
                     <h3>Command line bloat</h3>
                     <ul>
-                        <li>Features added all the time</li>
+                        <li>Features added frequently</li>
                         <li>Customisations requested often</li>
-                        <li>Solutions:</li>
+                        <li class="fragment">Solutions:</li>
                         <ol>
                             <li class="fragment">Abandon command line approach and build library</li>
                             <li class="fragment">Define a domain specific config format</li>
@@ -369,7 +375,7 @@ Ran 376 tests in 0.167s
                     <h3>Domain specific config files</h3>
                     <p>Put options into a JSON structure</p>
                     <pre><code class="bash">c4plot --config-file=file.json stats*.nc</code></pre>
-                    <pre><code data-trim data-noescape>
+                    <pre class="fragment"><code data-trim data-noescape>
 {
     "default": {
        "colors": ["Red", "Blue"],
