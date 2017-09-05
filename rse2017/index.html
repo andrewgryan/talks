@@ -180,7 +180,7 @@
                 </section>
                 <section>
                     <h3>Verification metrics</h3>
-                    <ul>
+                    <ul style="font-size:0.9em;">
                         <li>Match ups</li>
                         <ul>
                             <li>Observation: $\vec{o} = F_o(\lambda, \phi)$</li>
@@ -191,7 +191,7 @@
                             <li>RMSE: $\sum{(f_i - o_i)^2} / N$</li>
                             <li>MAE: $\sum{\mid f_i - o_i \mid} / N$</li>
                             <li>Bias: $\sum{(f_i - o_i)} / N$</li>
-                            <li>Correlation: $covar(\vec{f}, \vec{o}) / (var(\vec{f}) var(\vec{o}))^{1/2}$</li>
+                            <li>Pearson correlation: $\frac{covar(\vec{f}, \vec{o})}{\sqrt{var(\vec{f}) var(\vec{o})}}$</li>
                         </ul>
                     </ul>
                 </section>
@@ -424,14 +424,33 @@ submit.pbs
                     <h3>Glue applications together into a suite</h3>
                 </section>
                 <section>
+                        <h3>
+                            <img width="50px" style="box-shadow:none; border:none; margin: 0; padding: 0;" src="rose-icon-large.png" alt="" />
+                            <a href="http://metomi.github.io/rose/doc/rose.html">Rose suite scheduler</a></h3>
+                        <div style="display:flex;">
+                            <div style="flex:0 0 60%;font-size:0.7em;">
+                                <ul>
+                                    <li>Task scheduler at the Met Office</li>
+                                    <li>Deploys tasks across compute servers</li>
+                                    <li>Declares dependencies between tasks</li>
+                                    <li>Cycles and clock-triggers tasks</li>
+                                    <li>Logs stdout and stderr</li>
+                                    <li>Fits quite nicely with Class 4 architecture</li>
+                                </ul>
+                            </div>
+                            <div style="flex: 1;">
+                                <img class="rose" src="rose-suite-crop.png" alt="" />
+                            </div>
+                        </div>
+                </section>
+                <section>
                     <h3>Summary</h3>
                     <ul>
                         <li class="fragment">Ocean verification is performed routinely</li>
                         <li class="fragment">Output informs decision makers</li>
                         <li class="fragment">The system is scalable across machines</li>
                         <li class="fragment">Users suggest new features</li>
-                        <li class="fragment">Developers get feedback</li>
-                        <li class="fragment">Good development practices are followed</li>
+                        <li class="fragment">Developers follow good practices</li>
                     </ul>
                 </section>
 			</div>
