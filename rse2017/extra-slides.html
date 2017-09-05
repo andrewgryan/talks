@@ -1,4 +1,79 @@
 <!-- The slides that didn't make it -->
+                <section>
+                    <h3>Interpolators</h3>
+                </section>
+                <section>
+                    <h3>NEMO observation operator</h3>
+                    <ul>
+                        <li>Requires dozens of input files</li>
+                        <li>Complicated build system</li>
+                        <li>Release cycle often introduces breaking changes</li>
+                        <li>Already solved my problem</li>
+                        <li>Works for all models</li>
+                    </ul>
+                </section>
+                <section>
+                <h3>Input files needed by NEMO</h3>
+                <p>For each forecast all of these files are needed.</p>
+                <pre><code class="bash" data-trim>
+1_namelist_cfg
+1_namelist_ice_cfg
+1_namelist_ref
+AGRIF_FixedGrids.in
+K1rowdrg.nc
+M2rowdrg.nc
+bathy_meter.nc
+bfr_coef.nc
+cf_name_table.txt
+coordinates.nc
+coords_CF.nc
+domain_def.xml
+field_def.xml
+geothermal_heating.nc
+grids.nc
+iodef.xml
+layout.dat
+mask_itf.nc
+model.nc
+modelMDT.nc
+namelist_cfg
+namelist_ice_cfg
+namelist_ice_ref
+namelist_ref
+ocean.output
+opa
+output.namelist.dyn
+profb_01_fdbk.nc
+profb_godae_20170830.nc
+runoff_1m_nomask.nc
+slaReferenceLevel.nc
+slafb_01_fdbk.nc
+slafb_godae_20170830.nc
+sss_1m.nc
+sstfb_01_fdbk.nc
+sstfb_godae_20170830.nc
+subbasins.nc
+submit-fbcomb.pbs
+submit.pbs
+                    </code></pre>
+                </section>
+                <section>
+                    <h3>Other complications</h3>
+                    <ul>
+                        <li>Fortran 90 namelists need to be manipulated</li>
+                        <li>Libraries only available on the super-computer</li>
+                        <li>Impossible to test subroutines in isolation</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Python observation operator</h3>
+                    <ul>
+                        <li>Available on PYPI and github</li>
+                        <li>Uses Cython to speed up loop-oriented algorithms</li>
+                        <li>API only requires numpy arrays</li>
+                        <li>Continuous integration with Travis CI</li>
+                    </ul>
+                </section>
 <section>
     <h3>Relative statistics</h3>
     <ul>

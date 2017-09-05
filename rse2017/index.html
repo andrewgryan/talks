@@ -250,31 +250,37 @@
                     </ul>
                 </section>
                 <section>
+                    <h3>Collaboration protocol</h3>
+                    <ul>
+                        <li>File formats defined</li>
+                        <ol>
+                            <li>Forecast/observation pairs</li>
+                            <li>Summary statistics</li>
+                        </ol>
+                        <li>Files exchanged via a server</li>
+                        <li>Enable consistent comparison of data</li>
+                        <li>Tools build on top of standard formats</li>
+                    </ul>
+                </section>
+                <section data-markdown="class4-dump.md"></section>
+                <section data-markdown="stats-dump.md"></section>
+                <section>
                     <h3>Architecture</h3>
                     <p>Requirements broken down into applications</p>
                     <pre><code data-trim>
-> c4obs --help
-> c4extract --help
-> c4interp --help
-> c4stats --help
-> c4plot --help
-> c4deliver --help
+> c4obs      # Processes observations
+> c4extract  # Extracts Met Office forecasts
+> c4interp   # Interpolates forecasts
+> c4stats    # Computes summary statistics
+> c4plot     # Visualises statistics
+> c4deliver  # Sends files to collaborators
                     </code></pre>
                     <p>Each application has a single responsibility and
                        a problem specific interface</p>
                 </section>
                 <section>
-                    <h3>File formats</h3>
-                    <p>The applications build on top of data formats</p>
-                    <ul>
-                        <li>Format for model/observation pairs</li>
-                        <li>Format for summary statistics</li>
-                    </ul>
-                </section>
-                <section data-markdown="dump.md"></section>
-                <section>
                     <h3>Development practices</h3>
-                    <p style="text-align:left;">
+                    <p>
                     To guarantee system integrity, resilience and backwards compatibility
                     </p>
                     <ul>
@@ -314,9 +320,12 @@ Ran 376 tests in 0.167s
                     <h3>Code reviews</h3>
                     <div style="width:60%; float:left;">
                         <ul>
-                            <li>Light weight reviews using trac</li>
-                            <li>Over the shoulder reviews</li>
-                            <li>Formal review meetings</li>
+                            <li>Review styles</li>
+                            <ol>
+                                <li>Light weight using trac</li>
+                                <li>Over the shoulder</li>
+                                <li>Formal review meetings</li>
+                            </ol>
                         </ul>
                     </div>
                     <div style="width:40%; float:left;">
@@ -324,79 +333,16 @@ Ran 376 tests in 0.167s
                     </div>
                 </section>
                 <section>
-                    <h3>Interpolators</h3>
-                </section>
-                <section>
-                    <h3>NEMO observation operator</h3>
+                    <h3>User feedback</h3>
                     <ul>
-                        <li>Requires dozens of input files</li>
-                        <li>Complicated build system</li>
-                        <li>Release cycle often introduces breaking changes</li>
-                        <li>Already solved my problem</li>
-                        <li>Works for all models</li>
+                        <li>Users have ideas for features</li>
+                        <li>Discussions take place with developers</li>
+                        <li>The ticket system logs the ideas</li>
+                        <li>Tickets often assigned to users for review/testing</li>
                     </ul>
                 </section>
                 <section>
-                <h3>Input files needed by NEMO</h3>
-                <p>For each forecast all of these files are needed.</p>
-                <pre><code class="bash" data-trim>
-1_namelist_cfg
-1_namelist_ice_cfg
-1_namelist_ref
-AGRIF_FixedGrids.in
-K1rowdrg.nc
-M2rowdrg.nc
-bathy_meter.nc
-bfr_coef.nc
-cf_name_table.txt
-coordinates.nc
-coords_CF.nc
-domain_def.xml
-field_def.xml
-geothermal_heating.nc
-grids.nc
-iodef.xml
-layout.dat
-mask_itf.nc
-model.nc
-modelMDT.nc
-namelist_cfg
-namelist_ice_cfg
-namelist_ice_ref
-namelist_ref
-ocean.output
-opa
-output.namelist.dyn
-profb_01_fdbk.nc
-profb_godae_20170830.nc
-runoff_1m_nomask.nc
-slaReferenceLevel.nc
-slafb_01_fdbk.nc
-slafb_godae_20170830.nc
-sss_1m.nc
-sstfb_01_fdbk.nc
-sstfb_godae_20170830.nc
-subbasins.nc
-submit-fbcomb.pbs
-submit.pbs
-                    </code></pre>
-                </section>
-                <section>
-                    <h3>Other complications</h3>
-                    <ul>
-                        <li>Fortran 90 namelists need to be manipulated</li>
-                        <li>Libraries only available on the super-computer</li>
-                        <li>Impossible to test subroutines in isolation</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Python observation operator</h3>
-                    <ul>
-                        <li>Available on PYPI and github</li>
-                        <li>Uses Cython to speed up loop-oriented algorithms</li>
-                        <li>API only requires numpy arrays</li>
-                        <li>Continuous integration with Travis CI</li>
-                    </ul>
+                    <h3>Case study: Command line bloat</h3>
                 </section>
                 <section>
                     <h3>Visualisation</h3>
@@ -430,6 +376,7 @@ submit.pbs
                         </code></pre>
                 </section>
                 <section>
+                    <h2>Final step</h2>
                     <h3>Glue applications together into a suite</h3>
                 </section>
                 <section>
@@ -460,7 +407,11 @@ submit.pbs
                         <li class="fragment">The system is scalable across machines</li>
                         <li class="fragment">Users suggest new features</li>
                         <li class="fragment">Developers follow good practices</li>
+                        <li class="fragment">Clean scalable code follows</li>
                     </ul>
+                </section>
+                <section>
+                    <h3>Any questions?</h3>
                 </section>
 			</div>
 		</div>

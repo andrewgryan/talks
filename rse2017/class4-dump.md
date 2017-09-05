@@ -1,8 +1,8 @@
-## NetCDF Class 4 format
+### Class 4 format
 
-Defined variable names, dimensions and meta-data
+* Forecasts colocated to observation positions
 
-```
+```text
 netcdf class4_20170823_FOAM_orca025_12.0_SST {
 dimensions:
 	numobs = 26673 ;
