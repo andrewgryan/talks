@@ -4,57 +4,100 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>CLIMAR - Technical Workshop</title>
-        
-        
-      <script type="module" crossorigin src="/talks/assets/index.fc09632e.js"></script>
+      <script type="module" crossorigin src="/talks/assets/index.5a20bf30.js"></script>
       <link rel="modulepreload" href="/talks/assets/vendor.ecee89d3.js">
-      <link rel="stylesheet" href="/talks/assets/index.9443065e.css">
+      <link rel="stylesheet" href="/talks/assets/index.1978af95.css">
     </head>
     <body>
-        <div class="reveal">
+        <div
+            class="
+                reveal
+                tw-bg-gradient-to-b
+                tw-from-blue-500
+                tw-via-blue-300
+                tw-to-blue-100
+            "
+        >
             <div class="slides">
                 <section>
-                    <h1>Scaling software</h1>
-                    <p>R Shiny</p>
+                    <h2>Scaling software</h2>
                     <h5>Andy Ryan</h5>
+                    <div class="tw-font-thin tw-tracking-wider tw-font-mono">
+                        R Shiny case study
+                    </div>
                 </section>
                 <section>
-                    <h3>Outline</h3>
+                    <h3>Talk Outline</h3>
                     <ul>
-                        <li>Principles of software design</li>
-                        <li>Refactoring techniques</li>
-                        <li>R-Shiny case study</li>
+                        <li class="fragment">Principles of software design</li>
+                        <li class="fragment">
+                            R-Shiny case study of SOLID principles
+                        </li>
+                        <li class="fragment">Refactoring techniques</li>
+                        <li class="fragment">Engineering practices</li>
                     </ul>
                 </section>
                 <section>
                     <section>
-                        <p style="font-size: 1.2rem">Non-executable code</p>
-                        <h3>COMMENTS</h3>
+                        <h1>Clean Code</h1>
+                    </section>
+
+                    <section>
+                        <h3>What is it?</h3>
+                        <ul>
+                            <li class="fragment">
+                                Hard won lessons from software engineers
+                            </li>
+                            <li class="fragment">
+                                The nitty gritty bits of code that add up to a
+                                well-designed system
+                            </li>
+                            <li class="fragment">
+                                Indentation, comments, naming conventions,
+                                abstractions ...
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Comments</h2>
+                    </section>
+
+                    <section>
                         <h4>Good practice</h4>
                         <ul>
-                            <li>Add knowledge not in the executable code</li>
-                            <li>
-                                Useful to break up blocks into logical steps
+                            <li class="fragment">
+                                Add knowledge not in the executable code
                             </li>
-                            <li>Highlight TODOs or NOTEs</li>
-                            <li>Document function signatures</li>
+                            <li class="fragment">
+                                Break up blocks into logical steps
+                            </li>
+                            <li class="fragment">Signal intention</li>
+                            <li class="fragment">Highlight TODOs or NOTEs</li>
+                            <li class="fragment">
+                                Document function signatures
+                            </li>
                         </ul>
-                        <pre class="R"><code data-trim>
+                        <pre class="R fragment"><code data-trim>
 result &lt;- foo(bar=TRUE) # TODO remove need for bar
 
 someFunc(date) # Only works with RFC3339 dates
                         </code></pre>
                     </section>
                     <section>
-                        <p style="font-size: 1.2rem">Non-executable code</p>
-                        <h3>COMMENTS</h3>
                         <h4>Bad practice</h4>
                         <ul>
-                            <li>Repeat information available in source code</li>
-                            <li>Comment out chunks of code for later use</li>
-                            <li>Go overboard commenting everything</li>
+                            <li class="fragment">
+                                Repeat information available in source code
+                            </li>
+                            <li class="fragment">
+                                Comment out chunks of code for later use
+                            </li>
+                            <li class="fragment">
+                                Go overboard commenting everything
+                            </li>
                         </ul>
-                        <pre class="R"><code data-trim>
+                        <pre class="R fragment"><code data-trim>
 result &lt;- foo(bar=TRUE) # result using foo when bar is TRUE
 
 # someFunc(date_0)
@@ -66,42 +109,78 @@ someFunc(rfcDate)
 
                     <section>
                         <p style="font-size: 1.2rem">Identifiers</p>
-                        <h3>Naming things</h3>
+                        <h3>Names</h3>
                         <ul>
-                            <li>Naming is hard</li>
-                            <li>
+                            <li class="fragment">Naming is hard</li>
+                            <li class="fragment">
                                 Rename variables, functions and modules until
-                                they don't need to change
+                                they don't need to change anymore
                             </li>
+                            <li class="fragment">
+                                Use intention revealing names
+                            </li>
+                            <li class="fragment">Use pronounceable names</li>
+                            <li class="fragment">Avoid mental-mapping</li>
+                            <li class="fragment">Don't use puns</li>
                         </ul>
                     </section>
+
                     <section>
-                        <p style="font-size: 1.2rem">
-                            Functional programming principles
-                        </p>
-                        <h3>Pure function</h3>
-                        <ul>
-                            <li class="fragment">No side-effects</li>
-                            <li class="fragment">Referential transparency</li>
-                            <li class="fragment">Immutable data structures</li>
-                            <li class="fragment">Easy to compose</li>
-                        </ul>
+                        <h3>More detailed information</h3>
+                        <div class="tw-flex tw-flex-row">
+                            <img
+                                class="tw-w-full tw-transform tw-scale-75"
+                                src="https://m.media-amazon.com/images/I/41SH-SvWPxL.jpg"
+                                alt=""
+                            />
+                            <img
+                                class="tw-w-full tw-transform tw-scale-75"
+                                src="https://images-na.ssl-images-amazon.com/images/I/61HEMOo48hL.jpg"
+                                alt=""
+                            />
+                        </div>
                     </section>
+                </section>
+                <section>
+                    <h4>Functional programming paradigm</h4>
+                    <p class="fragment">Pure function properties</p>
+                    <ul>
+                        <li class="fragment">No side-effects</li>
+                        <li class="fragment">Referential transparency</li>
+                        <li class="fragment">Immutable data structures</li>
+                        <li class="fragment">Easy to compose</li>
+                    </ul>
+                </section>
+                <section>
                     <section>
                         <p style="font-size: 1.2rem">Object-oriented design</p>
                         <h3>SOLID principles</h3>
                         <ul>
-                            <li class="fragment">Single responsibility</li>
-                            <li class="fragment">Open-closed</li>
-                            <li class="fragment">Liskov substitution</li>
-                            <li class="fragment">Interface segregation</li>
-                            <li class="fragment">Dependency inversion</li>
+                            <li class="fragment">
+                                <span class="tw-font-bold">S</span>ingle
+                                responsibility
+                            </li>
+                            <li class="fragment">
+                                <span class="tw-font-bold">O</span>pen-closed
+                            </li>
+                            <li class="fragment">
+                                <span class="tw-font-bold">L</span>iskov
+                                substitution
+                            </li>
+                            <li class="fragment">
+                                <span class="tw-font-bold">I</span>nterface
+                                segregation
+                            </li>
+                            <li class="fragment">
+                                <span class="tw-font-bold">D</span>ependency
+                                inversion
+                            </li>
                         </ul>
                     </section>
                     <section>
                         <p style="font-size: 1.2rem">SOLID</p>
                         <h3>Single Responsibility principle</h3>
-                        <p class="fragment">Simple example</p>
+                        <h5 class="fragment">Do one thing and do it well</h5>
                         <pre
                             class="R fragment"
                         ><code data-trim data-line-numbers="1-9|2-7|8">
@@ -265,25 +344,112 @@ function positiveDefinite(data) { ... }
                         </ul>
                         <p class="fragment">Module interface segregated</p>
                     </section>
+                </section>
 
-                    <section>
-                        <p style="font-size: 1.2rem">Don't repeat yourself</p>
-                        <h3>DRY</h3>
-                        <blockquote style="background-color: #fff">
-                            Every piece of knowledge must have a single,
+                <section>
+                    <p style="font-size: 1.2rem">Don't repeat yourself</p>
+                    <h3>DRY</h3>
+                    <div class="tw-flex tw-flex-col">
+                        <div class="tw-text-gray-600 tw-italic tw-p-2">
+                            "Every piece of knowledge must have a single,
                             unambiguous, authorative representation within a
-                            system.
-                        </blockquote>
-                        <ul>
-                            <li class="fragment">
-                                Resist urge to abstract text patterns
-                            </li>
-                            <li class="fragment">
-                                WET - Write everything twice
-                            </li>
-                        </ul>
+                            system."
+                        </div>
+                        <div class="tw-pl-1 tw-font-semibold tw-text-sm">
+                            Pragmatic programmer (Andrew Hunt, David Thomas)
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <p style="font-size: 1.2rem">Write everything twice</p>
+                    <h3>WET</h3>
+                    <div class="tw-flex tw-flex-col">
+                        <div class="tw-text-gray-600 tw-italic tw-p-2">
+                            Duplication is far cheaper than the wrong
+                            abstraction
+                        </div>
+                        <div class="tw-pl-1 tw-font-semibold tw-text-sm">
+                            - Sandi Metz
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Version control</h3>
+                        <div class="tw-flex tw-flex-col tw-items-center">
+                            <img
+                                class="
+                                    tw-object-cover
+                                    tw-object-bottom
+                                    tw-h-36
+                                    tw-w-72
+                                    tw-transform
+                                    tw-scale-150
+                                "
+                                src="https://wac-cdn.atlassian.com/dam/jcr:1523084b-d05a-4f5a-bd1a-01866ec09ca3/01%20A%20forked%20commit%20history.svg?cdnVersion=99"
+                                alt=""
+                            />
+                            <p>Time travel and parallel universes</p>
+                        </div>
+                    </section>
+                    <section>
+                        <h5>Become a Git Guru</h5>
+                        <a href="https://www.atlassian.com/git/tutorials">
+                            <img
+                                class="tw-object-contain tw-w-full"
+                                src="/talks/screenshot-atlassian.png"
+                                alt=""
+                            />
+                        </a>
                     </section>
                 </section>
+
+                <section>
+                    <section>
+                        <h1>Refactoring</h1>
+                        <div class="tw-flex tw-flex-col">
+                            <div class="tw-text-gray-600 tw-italic tw-p-2">
+                                "If it smells bad, change it"
+                            </div>
+                            <div class="tw-pl-1 tw-font-semibold tw-text-sm">
+                                Kent Beck's grandmother
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h5>Refactoring Guru</h5>
+                        <iframe
+                            id="refactoring"
+                            class="tw-w-full tw-h-screen"
+                            src="https://refactoring.guru/refactoring/catalog"
+                            frameborder="0"
+                        ></iframe>
+                    </section>
+                </section>
+
+                <section>
+                    <h3>Pair programming</h3>
+                    <img
+                        src="https://martinfowler.com/articles/on-pair-programming/benefits_overview.jpg"
+                        alt=""
+                    />
+                </section>
+                <section>
+                    <h3>Automated tests</h3>
+                    <img
+                        src="https://martinfowler.com/articles/practical-test-pyramid/testPyramid.png"
+                        alt=""
+                    />
+                    <div class="tw-text-sm tw-pb-4">The testing pyramid</div>
+                    <ul>
+                        <li class="fragment">Test driven development - TDD</li>
+                        <li class="fragment">
+                            Integration tests - GitHub actions
+                        </li>
+                    </ul>
+                </section>
+
                 <section>
                     <h2>R-Shiny app</h2>
                     <ul>
@@ -306,25 +472,20 @@ shinyApp(ui = ui, server = server)
                 </section>
 
                 <section>
-                    <h2>Shiny.router</h2>
-                </section>
-
-                <section>
                     <h2>Shiny modules</h2>
                     <p>Library code is reusable</p>
                     <p>App code is use-case specific</p>
                 </section>
 
                 <section>
-                    <h3>Separation of concerns</h3>
-                    <p>Concepts speak louder than words</p>
-                </section>
-                <section>
-                    <h3>Directory structure</h3>
-                    <p>Use R modules</p>
-                </section>
-                <section>
-                    <h3>Beware leaky abstractions</h3>
+                    <h1>Summary</h1>
+                    <ul>
+                        <li>Separate concerns</li>
+                        <li>Use version control</li>
+                        <li>Pair program &amp; code review</li>
+                        <li>Extract re-usable code</li>
+                        <li>But not too early</li>
+                    </ul>
                 </section>
             </div>
         </div>
