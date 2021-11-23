@@ -23,15 +23,39 @@
                         R Shiny case study
                     </div>
                 </section>
+
+                <section>
+                    <h3>Pre-talk talk</h3>
+                    <ul>
+                        <li class="fragment">Anyone not got R Studio?</li>
+                        <li class="fragment">Tell me your GitHub handle</li>
+                        <li class="fragment">
+                            I'll add you to my repo collaborators list
+                        </li>
+                        <li class="fragment">
+                            Or fork my repo if you know how
+                        </li>
+                        <li class="fragment">
+                            <a
+                                href="https://github.com/andrewgryan/climar-technical-workshop"
+                                >andrewgryan/climar-technical-workshop</a
+                            >
+                        </li>
+                    </ul>
+                </section>
                 <section>
                     <h3>Talk Outline</h3>
                     <ul>
                         <li class="fragment">Principles of software design</li>
                         <li class="fragment">
-                            R-Shiny case study of SOLID principles
+                            Functional programming overview
+                        </li>
+                        <li class="fragment">
+                            SOLID principles via R-Shiny example
                         </li>
                         <li class="fragment">Refactoring techniques</li>
                         <li class="fragment">Engineering practices</li>
+                        <li class="fragment">Practical session</li>
                     </ul>
                 </section>
                 <section>
@@ -139,14 +163,32 @@ someFunc(rfcDate)
                     </section>
                 </section>
                 <section>
-                    <h4>Functional programming paradigm</h4>
-                    <p class="fragment">Pure function properties</p>
-                    <ul>
-                        <li class="fragment">No side-effects</li>
-                        <li class="fragment">Referential transparency</li>
-                        <li class="fragment">Immutable data structures</li>
-                        <li class="fragment">Easy to compose</li>
-                    </ul>
+                    <section>
+                        <h4>Functional programming paradigm</h4>
+                        <p class="fragment">Pure function properties</p>
+                        <ul>
+                            <li class="fragment">No side-effects</li>
+                            <li class="fragment">Referential transparency</li>
+                            <li class="fragment">Immutable data structures</li>
+                            <li class="fragment">Easy to compose</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Learn more</h3>
+                        <p>
+                            Check out Scott Wlaschin's talk as a good place to
+                            start learning functional programming
+                        </p>
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/oquuPOkz8xo?start=180"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </section>
                 </section>
                 <section>
                     <section>
@@ -282,7 +324,9 @@ palette &lt;- hazardColors(symmetricAboutZero(data))
                             </li>
                             <li class="fragment">Less code</li>
                         </ul>
-                        <p class="fragment">Satisfies DIP</p>
+                        <p class="fragment tw-font-bold">
+                            Satisfies Dependency Inversion Principle
+                        </p>
                     </section>
 
                     <section>
@@ -300,15 +344,16 @@ function positiveDefinite(data) { ... }
                         </code></pre>
                         <ul>
                             <li class="fragment">
-                                Domain calculations shouldn't require leaflet to
-                                be loaded
+                                Domain calculations shouldn't need leaflet
                             </li>
                             <li class="fragment">
-                                hazardColors() shouldn't depend on math
-                                libraries
+                                What if I want limits for a ggplot?
+                            </li>
+                            <li class="fragment">
+                                Should I install.packages(leaflet)?
                             </li>
                         </ul>
-                        <p class="fragment">
+                        <p class="fragment tw-font-bold">
                             Module interface segregation violation
                         </p>
                     </section>
@@ -369,6 +414,10 @@ function positiveDefinite(data) { ... }
                             - Sandi Metz
                         </div>
                     </div>
+                </section>
+
+                <section>
+                    <h1>Engineering Practices</h1>
                 </section>
 
                 <section>
@@ -448,30 +497,15 @@ function positiveDefinite(data) { ... }
                 </section>
 
                 <section>
-                    <h2>R-Shiny app</h2>
-                    <ul>
-                        <li>ui/server function pair</li>
-                    </ul>
-                    <pre
-                        class="R"
-                    ><code data-trim data-noescape data-line-numbers="0-4|5-9|10-11">
-# app.R
-ui &lt;- htmlTemplate(
-    userName = textInput("userName", "User:")
-)
-server &lt;- function(input, output, session) {
-    observeEvent(input$userName, {
-        doSomething(input$userName)
-    })
-}
-shinyApp(ui = ui, server = server)
-                    </code></pre>
+                    <h1>Practical session</h1>
                 </section>
 
                 <section>
-                    <h2>Shiny modules</h2>
-                    <p>Library code is reusable</p>
-                    <p>App code is use-case specific</p>
+                    <h3>Task</h3>
+                    <ul>
+                        <li>Work alone or in pairs</li>
+                        <li>Add a feature to an example</li>
+                    </ul>
                 </section>
 
                 <section>
