@@ -4,15 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width" />
         <title>CLIMAR - Technical Workshop</title>
-        <link rel="stylesheet" href="/node_modules/reveal.js/dist/reveal.css" />
-        <link
-            rel="stylesheet"
-            href="/node_modules/reveal.js/dist/css/zenburn.css"
-        />
-        <link
-            rel="stylesheet"
-            href="/node_modules/highlight.js/styles/base16/github.css"
-        />
+        <link rel="stylesheet" href="./node_modules/reveal.js/dist/reveal.css" />
         <link
             rel="stylesheet"
             href="/node_modules/reveal.js/dist/theme/sky.css"
@@ -277,6 +269,7 @@ shinyApp(ui = ui, server = server)
             </div>
         </div>
         <script type="module">
+            import "highlight.js/styles/base16/github.css"
             import Reveal from "reveal.js";
             import Markdown from "reveal.js/plugin/markdown/markdown.esm.js";
             import Highlight from "reveal.js/plugin/highlight/highlight.esm.js";
