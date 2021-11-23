@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>CLIMAR - Technical Workshop</title>
+        
+        
+      <script type="module" crossorigin src="/assets/index.fc09632e.js"></script>
+      <link rel="modulepreload" href="/assets/vendor.ecee89d3.js">
+      <link rel="stylesheet" href="/assets/index.9443065e.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Scaling apps</h1>
+                    <p>R Shiny</p>
+                    <h5>Andy Ryan</h5>
+                </section>
+                <section>
+                    <h3>Outline</h3>
+                    <ul>
+                        <li>Principles of software design</li>
+                        <li>Refactoring techniques</li>
+                        <li>R-Shiny case study</li>
+                    </ul>
+                </section>
+                <section>
+                    <section>
+                        <p style="font-size: 1.2rem">Comments</p>
+                        <h3>Non-executable code</h3>
+                        <ul>
+                            <li>Use to highlight knowledge not in the code</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p style="font-size: 1.2rem">Identifiers</p>
+                        <h3>Naming things</h3>
+                        <ul>
+                            <li>
+                                Rename variables, functions and modules when
+                                needed
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p style="font-size: 1.2rem">
+                            Functional programming principles
+                        </p>
+                        <h3>Pure function</h3>
+                        <ul>
+                            <li class="fragment">No side-effects</li>
+                            <li class="fragment">Referential transparency</li>
+                            <li class="fragment">Immutable data structures</li>
+                            <li class="fragment">Easy to compose</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p style="font-size: 1.2rem">Object-oriented design</p>
+                        <h3>SOLID principles</h3>
+                        <ul>
+                            <li class="fragment">Single responsibility</li>
+                            <li class="fragment">Open-closed</li>
+                            <li class="fragment">Liskov substitution</li>
+                            <li class="fragment">Interface segregation</li>
+                            <li class="fragment">Dependency inversion</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <p style="font-size: 1.2rem">SOLID</p>
+                        <h3>Single Responsibility principle</h3>
+                        <p class="fragment">Simple example</p>
+                        <pre
+                            class="R fragment"
+                        ><code data-trim data-line-numbers="1-9|2-7|8">
+function hazardColors(data, symmetricAboutZero=FALSE) {
+    if (symmetricAboutZero) {
+        extent &lt;- max(abs(min(data), max(data)))
+        domain &lt;- c(-extent, +extent)
+    } else {
+        domain &lt;- c(0, max(data)) # Default domain
+    }
+    leaflet::colorBin("Reds", domain = domain)
+}
+                        </code></pre>
+                        <ul>
+                            <li class="fragment">
+                                Responsible for domain and color palette
+                            </li>
+                            <li class="fragment">
+                                Hard to re-use domain calculation logic
+                            </li>
+                        </ul>
+                        <p class="fragment">Violates SRP</p>
+                    </section>
+                    <section>
+                        <p style="font-size: 1.2rem">SOLID</p>
+                        <h3>Single Responsibility principle</h3>
+                        <p class="fragment">Better approach</p>
+                        <pre
+                            class="R fragment"
+                        ><code data-trim data-line-numbers="1-10|1-3|4-7|8-10">
+function hazardColors(domain) {
+    leaflet::colorBin("Reds", domain = domain)
+}
+function symmetricAboutZero(data) {
+    extent &lt;- max(abs(min(data), max(data)))
+    c(-extent, +extent)
+}
+function positiveDefinite(data) {
+    c(0, max(data))
+}
+                        </code></pre>
+                        <ul>
+                            <li class="fragment">
+                                Each function has one responsibility
+                            </li>
+                            <li class="fragment">
+                                Easy to re-use domain calculation logic
+                            </li>
+                        </ul>
+                        <p class="fragment">Satisfies SRP</p>
+                    </section>
+
+                    <section>
+                        <p style="font-size: 1.2rem">SOLID</p>
+                        <h3>Dependency inversion principle</h3>
+                        <p class="fragment">A tempting but naive approach</p>
+                        <pre
+                            class="R fragment"
+                        ><code data-trim data-line-numbers="1-10|1-3|4-10">
+function hazardColors(data, domainType) {
+  colorBin("Reds", domain=calculateDomain(data, domainType))
+}
+function calculateDomain(data, domainType) {
+  if (domainType == 'symmetric') {
+    return(symmetricAboutZero(data))
+  } else {
+    return(positiveDefinite(data))
+  }
+}
+                        </code></pre>
+                        <ul>
+                            <li class="fragment">
+                                Domain calculation nested inside functions
+                            </li>
+                            <li class="fragment">
+                                Hard to add a new algorithm
+                            </li>
+                        </ul>
+                        <p class="fragment">Violates DIP</p>
+                    </section>
+
+                    <section>
+                        <p style="font-size: 1.2rem">SOLID</p>
+                        <h3>Dependency inversion principle</h3>
+                        <p class="fragment">Solution</p>
+                        <pre
+                            class="R fragment"
+                        ><code data-trim data-line-numbers="1-10|1-3|4-10">
+function hazardColors(domain) {
+  colorBin("Reds", domain=domain)
+}
+palette &lt;- hazardColors(symmetricAboutZero(data))
+                        </code></pre>
+                        <ul>
+                            <li class="fragment">
+                                Domain calculation explicit to reader
+                            </li>
+                            <li class="fragment">
+                                Easy to add a new algorithm
+                            </li>
+                            <li class="fragment">
+                                No need for magical strings
+                            </li>
+                            <li class="fragment">Less code</li>
+                        </ul>
+                        <p class="fragment">Satisfies DIP</p>
+                    </section>
+
+                    <section>
+                        <p style="font-size: 1.2rem">SOLID</p>
+                        <h3>Interface segregation principle</h3>
+                        <p class="fragment">Example</p>
+                        <pre
+                            class="R fragment"
+                        ><code data-trim data-line-numbers="1-10|1-3|4-10">
+function hazardColors(domain) {
+  colorBin("Reds", domain=domain)
+}
+palette &lt;- hazardColors(symmetricAboutZero(data))
+                        </code></pre>
+                        <ul>
+                            <li class="fragment">
+                                Domain calculation explicit to reader
+                            </li>
+                            <li class="fragment">
+                                Easy to add a new algorithm
+                            </li>
+                            <li class="fragment">
+                                No need for magical strings
+                            </li>
+                            <li class="fragment">Less code</li>
+                        </ul>
+                        <p class="fragment">Satisfies DIP</p>
+                    </section>
+
+                    <section>
+                        <p style="font-size: 1.2rem">Don't repeat yourself</p>
+                        <h3>DRY</h3>
+                        <blockquote style="background-color: #fff">
+                            Every piece of knowledge must have a single,
+                            unambiguous, authorative representation within a
+                            system.
+                        </blockquote>
+                        <ul>
+                            <li class="fragment">
+                                Resist urge to abstract text patterns
+                            </li>
+                            <li class="fragment">
+                                WET - Write everything twice
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <h2>R-Shiny app</h2>
+                    <ul>
+                        <li>ui/server function pair</li>
+                    </ul>
+                    <pre
+                        class="R"
+                    ><code data-trim data-noescape data-line-numbers="0-4|5-9|10-11">
+# app.R
+ui &lt;- htmlTemplate(
+    userName = textInput("userName", "User:")
+)
+server &lt;- function(input, output, session) {
+    observeEvent(input$userName, {
+        doSomething(input$userName)
+    })
+}
+shinyApp(ui = ui, server = server)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>Shiny.router</h2>
+                </section>
+
+                <section>
+                    <h2>Shiny modules</h2>
+                    <p>Library code is reusable</p>
+                    <p>App code is use-case specific</p>
+                </section>
+
+                <section>
+                    <h3>Separation of concerns</h3>
+                    <p>Concepts speak louder than words</p>
+                </section>
+                <section>
+                    <h3>Directory structure</h3>
+                    <p>Use R modules</p>
+                </section>
+                <section>
+                    <h3>Beware leaky abstractions</h3>
+                </section>
+            </div>
+        </div>
+        
+    </body>
+</html>
