@@ -1,0 +1,19 @@
+{
+  "name": "climar-technical-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "highlight.js": "^11.3.1",
+    "reveal.js": "^4.2.0"
+  },
+  "devDependencies": {
+    "vite": "^2.6.14"
+  }
+}
