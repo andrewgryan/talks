@@ -27,9 +27,11 @@ jobs:
           node-version: 'lts/*'
 
       - name: Install dependencies
+        working-directory: ./jscop/modern-css
         run: npm install
 
       - name: Build
+        working-directory: ./jscop/modern-css
         run: npm run build -- --base /${{github.event.repository.name}}/
 
       - uses: actions/configure-pages@v4
