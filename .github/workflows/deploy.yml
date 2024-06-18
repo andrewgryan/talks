@@ -35,11 +35,14 @@ jobs:
         run: npm run build -- --base /${{github.event.repository.name}}/
 
       - uses: actions/configure-pages@v4
+        working-directory: ./jscop/modern-css
 
       - uses: actions/upload-pages-artifact@v3
+        working-directory: ./jscop/modern-css
         with:
           path: dist
 
       - name: Deploy
+        working-directory: ./jscop/modern-css
         id: deployment
         uses: actions/deploy-pages@v4
