@@ -1,0 +1,23 @@
+@import "https://unpkg.com/open-props";
+
+:root {
+  --slidev-theme-primary: hsl(0deg 0 0);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  background: var(--gradient-22);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animation */
+
+.slidev-vclick-target {
+  transition: all 500ms var(--ease-elastic-in-1);
+  transform: translateX(0);
+}
+
+.slidev-vclick-hidden {
+  transform: translateX(-100%);
+}

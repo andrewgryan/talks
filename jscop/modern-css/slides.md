@@ -1,645 +1,296 @@
 ---
-# try also 'default' to start simple
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides, markdown enabled
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply any unocss classes to the current slide
-class: text-center
-# https://sli.dev/custom/highlighters.html
 highlighter: shiki
-# https://sli.dev/guide/drawing
-drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations#slide-transitions
+theme: seriph
+background: https://cover.sli.dev
+title: Modern CSS
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/guide/syntax#mdc-syntax
 mdc: true
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+# CSS Scope!
 
 ---
-transition: fade-out
+layout: quote
 ---
 
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
+# Heard of <span text-hex-8080f2 font-bold><span v-mark="0">@scope</span></span> syntax?
 
 ---
-transition: slide-up
-level: 2
 ---
 
-# Navigation
+# Introduction
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+<v-clicks>
 
-## Keyboard Shortcuts
+1. What is the new **@scope** CSS feature?
+2. What problem(s) does it solve?
+3. Why is it worth learning?
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+</v-clicks>
 
 ---
-layout: two-cols
-layoutClass: gap-16
----
 
-# Table of contents
+# Disambiguation: scoped vs. @scope
 
-You can use the `Toc` component to generate a table of contents for your slides:
+
+- Don't confuse [@scope]{style="color:var(--green-5)"} with [scoped]{style="color:var(--red-5)"} style tag attribute
+- <span v-mark.underlined.red.at="1">Removed from specification</span> and <span v-mark.circle.blue.at="2">no longer supported by any browser</span>
 
 ```html
-<Toc minDepth="1" maxDepth="1"></Toc>
+<link rel="stylesheet" scoped> <!-- DEPRECATED SYNTAX -->
+<style scoped></style>         <!-- DEPRECATED SYNTAX -->
 ```
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
-
----
-layout: image-right
-image: https://cover.sli.dev
 ---
 
-# Code
+# Browser support for @scope
 
-Use code snippets and get the highlighting directly, and even types hover![^1]
+- Not yet. But soon.
 
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
+![Caniuse](/caniuse.png)
 
 ---
-level: 2
----
 
-# Shiki Magic Move
+# CSS @scope rule
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+- Restrict styles to sub-tree
+- Like nesting but without generating highly-specific selectors
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+```css
+@scope (.card) {
+  :scope {
+    /* rules that affect .card itself */
+    display: flex;
+  }
 
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
+  a {
+    /* rule(s) that affect links inside .card
+     * outside unaffected
+     */
+    background-color: lavender;
   }
 }
 ```
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
+---
+
+# CSS @scope rule
+
+- Without Block-Element-Modifier class names
+- Can use CSS props instead of Atomic classes
+
+````md magic-move {lines: true}
+```css
+.block {
+  display: flex;
+  gap: var(--size-2);
+}
+.block__element {
+  background-color: lavender;
+}
+.block__element--modifier {
+  border-radius: var(--size-0);
 }
 ```
+```css
+@scope (nav) {
+  :scope {
+    display: flex;
+    gap: var(--size-2);
+  }
 
-Non-code blocks are ignored.
+  a {
+    background-color: lavender;
+  }
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
+  a.current {
+    border-radius: var(--size-0);
+  }
 }
-</script>
 ```
 ````
 
 ---
 
-# Components
+# CSS @scope effect on Markup
 
-<div grid="~ cols-2 gap-4">
-<div>
+- Eliminates markup coupling to CSS concerns
+- Encourages semantic HTML usage
 
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
+````md magic-move {lines: true}
 ```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
 <!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
+  BEM/SMACCS/OOCS - project-wide unique role based class names
 -->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
+<nav class="block">
+  <a href="/" class="block__element block__element--modifier">Home</a>
+  <a href="/account" class="block__element">Account</a>
+</nav>
 ```
-
-```yaml
----
-theme: seriph
----
+```html
+<!--
+  @scope - element selectors are safe to use
+-->
+<nav>
+  <a href="/" class="current">Home</a>
+  <a href="/account">Account</a>
+</nav>
 ```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
+```html
+<!--
+  Tailwind - utility classes avoid overlapping effects
+-->
+<nav class="flex gap-x-2">
+  <a href="/" class="bg-teal-100 border-teal-300 rounded-lg">Home</a>
+  <a href="/account" class="bg-teal-100">Account</a>
+</nav>
+```
+````
 
 ---
 
-# Clicks Animations
+# Inline style a la Svelte
 
-You can add `v-click` to elements to add a click animation.
+- A vanilla HTML/CSS svelte-like component
 
-<div v-click>
+````md magic-move
+```html
+<!-- @scope used inline in the DOM -->
+<style>
+  @scope {
+    :scope {
+      /* Container styles */
+    }
 
-This shows up when you click the slide:
+    selector {
+      /* styling scoped to "component" */
+    }
+  }
+</style>
+
+<!-- Markup section -->
+<div>...</div>
+```
 
 ```html
-<div v-click>This shows up when you click the slide.</div>
+<!-- Static Component -->
+<style>
+  @scope {
+    :scope {
+      /* Container styles */
+      border-radius: var(--size-2);
+      box-shadow: var(--shadow);
+    }
+
+    h3 {
+      /* styling scoped to "component" */
+      color: var(--brand);
+      font-size: var(--font-size-6);
+    }
+  }
+</style>
+
+<!-- Markup section -->
+<h3>Card Title</h3>
+<p>Content</p>
 ```
+```html
+<!-- Jinja2 Component -->
+<style>
+  @scope {
+    :scope {
+      /* Container styles */
+      border-radius: var(--size-2);
+      box-shadow: var(--shadow);
+    }
 
+    h3 {
+      /* styling scoped to "component" */
+      color: var(--brand);
+      font-size: var(--font-size-6);
+    }
+  }
+</style>
+
+<!-- Markup section -->
+<h3>{{ title }}</h3>
+<p>{{ body }}</p>
+```
+```html
+<!-- Svelte component -->
+<style>
+  div {
+    /* Container styles */
+    border-radius: var(--size-2);
+    box-shadow: var(--shadow);
+  }
+
+  h3 {
+    /* styling scoped to "component" */
+    color: var(--brand);
+    font-size: var(--font-size-6);
+  }
+</style>
+
+<!-- Markup section -->
+<div>
+  <h3>{ post.title }</h3>
+  <p>{ post.body }</p>
 </div>
+```
+````
 
-<br>
+---
+
+# Donut scope
+
+<v-clicks>
+
+- Restrict styles to sub-tree excluding inner sub-tree(s)
+- Donut/swiss cheese topology
+
+</v-clicks>
 
 <v-click>
 
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
+```css
+h2 {
+  color: silver;
+}
 
-```html
-<span v-mark.underline.orange>inline markers</span>
+/* Use @scope to limit styles */
+@scope (.card) to (.inner) {
+  h2 {
+    color: gold;
+  }
+}
 ```
 
 </v-click>
-
-<div mt-20 v-click>
-
-[Learn More](https://sli.dev/guide/animations#click-animations)
-
-</div>
-
----
-
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+<v-click>
 
 ```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
+<!-- Sample markup -->
+<div class="card">
+  <h2>Gold title</h2>
+  <div class="inner">
+    <h2>Silver title</h2>
   </div>
 </div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
+```
+</v-click>
 
 ---
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
+layout: image-right
+image: /meme.webp
+backgroundSize: contain
 ---
 
-# Diagrams
+# Conclusion
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+<ul>
+  <li v-click="1">Not <span v-mark='{"type": "highlight", "color": "teal", "at": "2"}' class="px-0.5 mx-1">100%</span> production ready (yet)</li>
+  <li v-click="3">CSS specificity <span v-mark.underline.red.at="4">less dangerous</span> and no longer <code>!important</code></li>
+  <li v-click="5">Semantic/accessible HTML <span v-mark.box.blue.at="6">friendly</span></li>
+</ul>
 
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/multiple-entries.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
-
----
-layout: center
-class: text-center
----
-
-# Learn More
-
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
