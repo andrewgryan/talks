@@ -47,7 +47,7 @@ layout: quote
 
 - Not yet. But soon.
 
-![Caniuse](./caniuse.png)
+![Caniuse](/caniuse.png)
 
 ---
 
@@ -282,7 +282,7 @@ h2 {
 
 ---
 layout: image-right
-image: ./meme.webp
+image: /meme.webp
 backgroundSize: contain
 ---
 
