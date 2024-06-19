@@ -1,12 +1,18 @@
 @import "https://unpkg.com/open-props";
 
 :root {
-  --slidev-theme-primary: hsl(0deg 0 0);
+  --brand: var(--gray-9);
+  --slidev-theme-primary: red;
+  --slidev-slide-container-background: var(--brand);
+}
+
+.slidev-slide-content {
+  background-color: var(--brand) !important;
 }
 
 
 h1, h2, h3, h4, h5, h6 {
-  background: var(--gradient-22);
+  background: var(--gradient-4); /* 22 */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

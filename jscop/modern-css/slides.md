@@ -1,6 +1,6 @@
 ---
 highlighter: shiki
-theme: seriph
+theme: default
 background: https://cover.sli.dev
 title: Modern CSS
 transition: slide-left
@@ -25,6 +25,7 @@ layout: quote
 1. What is the new **@scope** CSS feature?
 2. What problem(s) does it solve?
 3. Why is it worth learning?
+4. Can I use it?
 
 </v-clicks>
 
@@ -51,7 +52,7 @@ layout: quote
 
 ---
 
-# CSS @scope rule
+# CSS @scope rule definition
 
 - Restrict styles to sub-tree
 - Like nesting but without generating highly-specific selectors
@@ -74,13 +75,15 @@ layout: quote
 
 ---
 
-# CSS @scope rule
+# CSS @scope rule in action
 
-- Without Block-Element-Modifier class names
-- Can use CSS props instead of Atomic classes
+- Reduces need for Block-Element-Modifier class names
+- Makes Atomic classes less relevant
 
 ````md magic-move {lines: true}
 ```css
+/* BEM example */
+
 .block {
   display: flex;
   gap: var(--size-2);
@@ -93,6 +96,8 @@ layout: quote
 }
 ```
 ```css
+/* @scope equivalent */
+
 @scope (nav) {
   :scope {
     display: flex;
@@ -129,7 +134,7 @@ layout: quote
 ```
 ```html
 <!--
-  @scope - element selectors are safe to use
+  @scope - element selectors are safe to use inside @scope
 -->
 <nav>
   <a href="/" class="current">Home</a>
@@ -149,7 +154,7 @@ layout: quote
 
 ---
 
-# Inline style a la Svelte
+# Svelte encapsulated style
 
 - A vanilla HTML/CSS svelte-like component
 
@@ -242,6 +247,28 @@ layout: quote
 
 ---
 
+# Full featured inline-styling
+
+- Tailwind CSS preferred to inline styles as it allows, pseudo-classes and modern selectors, e.g. `:hover`.
+- `@scope` gives element scoped styles withot a compile step
+
+```html
+<button>
+  Text
+  <style>@scope { :scope:hover { background-color: red;}}</style>
+</button>
+```
+
+<v-clicks>
+
+- Allows `@` rules, e.g. `@container` queries
+- Pseudo selectors, e.g. `:has()`, `:not()` etc.
+- Pseudo element selectors, e.g. `::before`, `::after`, `::first-line`.
+
+</v-clicks>
+
+---
+
 # Donut scope
 
 <v-clicks>
@@ -281,10 +308,6 @@ h2 {
 </v-click>
 
 ---
-layout: image-right
-image: /meme.webp
-backgroundSize: contain
----
 
 # Conclusion
 
@@ -293,4 +316,11 @@ backgroundSize: contain
   <li v-click="3">CSS specificity <span v-mark.underline.red.at="4">less dangerous</span> and no longer <code>!important</code></li>
   <li v-click="5">Semantic/accessible HTML <span v-mark.box.blue.at="6">friendly</span></li>
 </ul>
+
+---
+layout: image
+image: /meme.webp
+backgroundSize: contain
+---
+
 
