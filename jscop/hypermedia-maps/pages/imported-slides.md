@@ -1,6 +1,6 @@
 ---
 dragPos:
-  square: -57,0,0,0
+  square: 691,32,167,_,-16
 ---
 
 # Imported Slides
