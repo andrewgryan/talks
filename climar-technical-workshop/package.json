@@ -12,7 +12,7 @@
     "license": "ISC",
     "dependencies": {
         "highlight.js": "^11.3.1",
-        "reveal.js": "^4.2.0"
+        "reveal.js": "^4.3.0"
     },
     "devDependencies": {
         "tailwindcss": "^2.2.19",
